@@ -23,3 +23,6 @@ git status
 
 ## PENDENTE
 - ver com a XP compra negada com cartão digital temporário, para criar conta AWS  , email fernandomullerjunior-labs@proton.me
+- Regularizar nova conta. Ver sobre pagamento pendente na antiga.
+- Criar par de chaves AWS.
+- Configurar AWS CLI.
