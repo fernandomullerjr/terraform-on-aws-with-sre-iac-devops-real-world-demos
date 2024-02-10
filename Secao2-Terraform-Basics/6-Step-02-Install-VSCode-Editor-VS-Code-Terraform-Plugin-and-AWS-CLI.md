@@ -36,6 +36,14 @@ git status
 
 
 - Criando contas AWS multiaccount
+Successfully moved the AWS account 'sandbox-fernando-labs' to the organizational unit 'develop'.
+We reprovisioned your AWS accounts successfully and applied the updated permission set to the accounts.
 
+
+## PENDENTE
+- Criar account adicional.
+- Criar par de chaves AWS
+- Criar alertas de billing
 - Criar par de chaves AWS.
 - Configurar AWS CLI.
+
