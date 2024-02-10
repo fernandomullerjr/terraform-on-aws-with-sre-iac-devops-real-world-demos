@@ -128,4 +128,4 @@ Plan: 1 to add, 0 to change, 0 to destroy.
 - Ver como fazer funcionar o "assume_role" no meu cenário.
 - Criar alertas de billing
 - Criar par de chaves AWS ou definir outra estratégia???
-- Documentar.
+- Documentar. Granted, TF com role, vm com nat, etc
