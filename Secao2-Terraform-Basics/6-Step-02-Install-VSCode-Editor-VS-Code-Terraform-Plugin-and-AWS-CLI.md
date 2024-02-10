@@ -67,3 +67,17 @@ granted sso populate --sso-region us-east-1 https://d-9067f719d0.awsapps.com/sta
 ens33
 36
 37
+
+
+
+- Funcionando via SSO
+
+~~~~BASH
+
+? Please select the profile you would like to assume: sandbox-fernando-labs/AdministratorAccess
+[i] To assume this profile again later without needing to select it, run this command:
+> assume sandbox-fernando-labs/AdministratorAccess
+[✔] [sandbox-fernando-labs/AdministratorAccess](us-east-1) session credentials will expire in 12 hours
+fernando@debian10x64:~$
+
+~~~~
