@@ -72,6 +72,9 @@ ens33
 
 - Funcionando via SSO
 
+usando
+"#profile = "sandbox-fernando-labs/AdministratorAccess"
+
 ~~~~BASH
 
 ? Please select the profile you would like to assume: sandbox-fernando-labs/AdministratorAccess
@@ -80,4 +83,49 @@ ens33
 [✔] [sandbox-fernando-labs/AdministratorAccess](us-east-1) session credentials will expire in 12 hours
 fernando@debian10x64:~$
 
+
+
+
+fernando@debian10x64:~/cursos/terraform/terraform-on-aws-with-sre-iac-devops-real-world-demos/Secao2-Terraform-Basics/teste-terraform$ terraform plan
+
+Terraform used the selected providers to generate the following execution plan. Resource actions are indicated with the following symbols:
+  + create
+
+Terraform will perform the following actions:
+
+  # aws_s3_bucket.my_bucket will be created
+  + resource "aws_s3_bucket" "my_bucket" {
+      + acceleration_status         = (known after apply)
+      + acl                         = (known after apply)
+      + arn                         = (known after apply)
+      + bucket                      = "day67taskbucket0304"
+      + bucket_domain_name          = (known after apply)
+      + bucket_prefix               = (known after apply)
+      + bucket_regional_domain_name = (known after apply)
+      + force_destroy               = false
+      + hosted_zone_id              = (known after apply)
+      + id                          = (known after apply)
+      + object_lock_enabled         = (known after apply)
+      + policy                      = (known after apply)
+      + region                      = (known after apply)
+      + request_payer               = (known after apply)
+      + tags_all                    = (known after apply)
+      + website_domain              = (known after apply)
+      + website_endpoint            = (known after apply)
+    }
+
+Plan: 1 to add, 0 to change, 0 to destroy.
+
+
 ~~~~
+
+
+
+
+
+
+## PENDENTE
+- Ver como fazer funcionar o "assume_role" no meu cenário.
+- Criar alertas de billing
+- Criar par de chaves AWS ou definir outra estratégia???
+- Documentar.
