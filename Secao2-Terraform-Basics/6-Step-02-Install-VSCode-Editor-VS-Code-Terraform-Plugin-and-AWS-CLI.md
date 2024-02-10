@@ -47,3 +47,23 @@ We reprovisioned your AWS accounts successfully and applied the updated permissi
 - Criar par de chaves AWS.
 - Configurar AWS CLI.
 
+
+
+vpc-02261204f793136ff	
+Available	172.31.0.0/16
+
+vpc-07f005af7cc2d79b9	
+Available	172.31.0.0/16
+
+
+- Instalar o granted
+- Configurar AWS CLI.
+- Criar alertas de billing
+
+
+granted sso populate --sso-region us-east-1 https://d-9067f719d0.awsapps.com/start/
+
+
+ens33
+36
+37
