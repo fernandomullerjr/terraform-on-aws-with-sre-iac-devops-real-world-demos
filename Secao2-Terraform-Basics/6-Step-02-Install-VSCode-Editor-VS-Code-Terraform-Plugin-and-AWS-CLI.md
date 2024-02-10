@@ -33,3 +33,9 @@ git status
 ## Dia 09/02/2024
 
 - Conta AWS regularizada.
+
+
+- Criando contas AWS multiaccount
+
+- Criar par de chaves AWS.
+- Configurar AWS CLI.
