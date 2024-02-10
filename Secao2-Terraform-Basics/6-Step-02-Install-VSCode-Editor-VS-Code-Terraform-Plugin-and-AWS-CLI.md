@@ -26,3 +26,10 @@ git status
 - Regularizar nova conta. Ver sobre pagamento pendente na antiga.
 - Criar par de chaves AWS.
 - Configurar AWS CLI.
+
+
+
+
+## Dia 09/02/2024
+
+- Conta AWS regularizada.
