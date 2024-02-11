@@ -129,3 +129,160 @@ Plan: 1 to add, 0 to change, 0 to destroy.
 - Criar alertas de billing
 - Criar par de chaves AWS ou definir outra estratégia???
 - Documentar. Granted, TF com role, vm com nat, etc
+
+
+
+## Dia 10/02/2024
+
+- Billing, necessário usuário root liberar acesso ao fernandomj90@gmail.com no billing da account, seguir tutorial:?
+https://docs.aws.amazon.com/IAM/latest/UserGuide/tutorial_billing.html?icmpid=docs_iam_console#tutorial-billing-step1
+
+
+## PENDENTE
+- Regularizar acesso a conta AWS via root com email fernandomullerjunior-labs@proton.me
+
+
+
+
+- Regularizar acesso a conta AWS via root com email fernandomullerjunior-labs@proton.me
+acesso OK via página de login "normal" ao invés de SSO:
+https://console.aws.amazon.com/console/home?region=us-east-1#
+
+
+IAM user and role access to Billing information  Info
+IAM user/role access to billing information
+Activated
+
+
+Bem-vindo ao Gerenciamento de custos da AWS
+Como esta é sua primeira visita, levará algum tempo para preparar seus dados de custo e uso. Verifique novamente em 24 horas.
+
+Como parte do seu processo de integração, configuraremos o AWS Cost Anomaly Detection para você. Esse serviço ajuda a monitorar e detectar gastos não intencionais nas suas contas. Para saber mais sobre o serviço ou como cancelá-lo, consulte Conceitos básicos do AWS Cost Anomaly Detection
+
+
+
+
+
+
+- Ver como fazer funcionar o "assume_role" no meu cenário.
+
+https://support.hashicorp.com/hc/en-us/articles/360041289933-Using-AWS-AssumeRole-with-the-AWS-Terraform-Provider
+
+~~~~json
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Effect": "Allow",
+            "Action": "sts:AssumeRole",
+            "Principal": {
+                "AWS": "891377134822"
+            },
+            "Condition": {
+                "StringEquals": {
+                    "sts:ExternalId": "7755"
+                }
+            }
+        }
+    ]
+}
+~~~~
+
+
+
+Role admin-role-account-sandbox created.
+
+arn:aws:iam::058264180843:role/admin-role-account-sandbox
+
+
+
+- Adicionado no main.tf o "aws_caller_identity", para poder obter o account id no outputs:
+
+~~~~tf
+data "aws_caller_identity" "current" {}
+
+resource "aws_s3_bucket" "my_bucket" {
+    bucket = "day67taskbucket0304"
+}
+~~~~
+
+
+- Criado outputs.tf para trazer informações do bucket S3 e também do account id:
+
+~~~~tf
+
+output "s3_bucket_id" {
+  value = aws_s3_bucket.my_bucket.id
+}
+
+output "aws_account_id" {
+  value = data.aws_caller_identity.current.account_id
+}
+
+output "s3_bucket_region" {
+  value = aws_s3_bucket.my_bucket.region
+}
+
+output "s3_bucket_arn" {
+  value = aws_s3_bucket.my_bucket.arn
+}
+
+output "s3_bucket_domain_name" {
+  value = aws_s3_bucket.my_bucket.bucket_domain_name
+}
+
+~~~~
+
+
+
+- Testando:
+
+~~~~bash
+
+fernando@debian10x64:~/cursos/terraform/terraform-on-aws-with-sre-iac-devops-real-world-demos/Secao2-Terraform-Basics/teste-terraform$ terraform plan
+data.aws_caller_identity.current: Reading...
+data.aws_caller_identity.current: Read complete after 0s [id=058264180843]
+
+Terraform used the selected providers to generate the following execution plan. Resource actions are indicated with the following symbols:
+  + create
+
+Terraform will perform the following actions:
+
+  # aws_s3_bucket.my_bucket will be created
+  + resource "aws_s3_bucket" "my_bucket" {
+      + acceleration_status         = (known after apply)
+      + acl                         = (known after apply)
+      + arn                         = (known after apply)
+      + bucket                      = "day67taskbucket0304"
+      + bucket_domain_name          = (known after apply)
+      + bucket_prefix               = (known after apply)
+      + bucket_regional_domain_name = (known after apply)
+      + force_destroy               = false
+      + hosted_zone_id              = (known after apply)
+      + id                          = (known after apply)
+      + object_lock_enabled         = (known after apply)
+      + policy                      = (known after apply)
+      + region                      = (known after apply)
+      + request_payer               = (known after apply)
+      + tags_all                    = (known after apply)
+      + website_domain              = (known after apply)
+      + website_endpoint            = (known after apply)
+    }
+
+Plan: 1 to add, 0 to change, 0 to destroy.
+
+Changes to Outputs:
+  + aws_account_id        = "058264180843"
+  + s3_bucket_arn         = (known after apply)
+  + s3_bucket_domain_name = (known after apply)
+  + s3_bucket_id          = (known after apply)
+  + s3_bucket_region      = (known after apply)
+
+~~~~
+
+
+
+- Trouxe corretamente o id da conta sandbox
+sandbox-fernando-labs
+
+#058264180843
