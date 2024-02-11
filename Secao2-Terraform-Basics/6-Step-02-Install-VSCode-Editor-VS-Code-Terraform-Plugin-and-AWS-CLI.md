@@ -307,3 +307,14 @@ s3_bucket_id = "day67taskbucket-sandbox"
 s3_bucket_region = "us-east-1"
 
 ~~~~
+
+
+
+
+
+
+
+
+## PENDENTE
+- Criar alertas de billing
+- Documentar. Granted, TF com role, vm com nat, etc
