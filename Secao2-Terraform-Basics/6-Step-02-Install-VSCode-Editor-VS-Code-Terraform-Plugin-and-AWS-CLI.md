@@ -318,3 +318,123 @@ s3_bucket_region = "us-east-1"
 ## PENDENTE
 - Criar alertas de billing
 - Documentar. Granted, TF com role, vm com nat, etc
+
+
+
+- Criar alertas de billing
+
+~~~~bash
+
+fernando@debian10x64:~/cursos/terraform/terraform-on-aws-with-sre-iac-devops-real-world-demos/Secao2-Terraform-Basics/alarmes-billing-aws$ terraform validate
+Success! The configuration is valid.
+
+fernando@debian10x64:~/cursos/terraform/terraform-on-aws-with-sre-iac-devops-real-world-demos/Secao2-Terraform-Basics/alarmes-billing-aws$
+
+
+
+
+fernando@debian10x64:~/cursos/terraform/terraform-on-aws-with-sre-iac-devops-real-world-demos/Secao2-Terraform-Basics/alarmes-billing-aws$ terraform apply -auto-approve
+data.aws_caller_identity.current: Reading...
+data.aws_caller_identity.current: Read complete after 1s [id=058264180843]
+
+Terraform used the selected providers to generate the following execution plan. Resource actions are indicated with the following symbols:
+  + create
+
+Terraform will perform the following actions:
+
+  # aws_cloudwatch_metric_alarm.billing_alarm will be created
+  + resource "aws_cloudwatch_metric_alarm" "billing_alarm" {
+      + actions_enabled                       = true
+      + alarm_actions                         = (known after apply)
+      + alarm_description                     = "This alarm is triggered when estimated charges exceed $10."
+      + alarm_name                            = "BillingAlarm"
+      + arn                                   = (known after apply)
+      + comparison_operator                   = "GreaterThanOrEqualToThreshold"
+      + dimensions                            = {
+          + "Currency" = "USD"
+        }
+      + evaluate_low_sample_count_percentiles = (known after apply)
+      + evaluation_periods                    = 1
+      + id                                    = (known after apply)
+      + metric_name                           = "EstimatedCharges"
+      + namespace                             = "AWS/Billing"
+      + period                                = 21600
+      + statistic                             = "Maximum"
+      + tags_all                              = (known after apply)
+      + threshold                             = 10
+      + treat_missing_data                    = "missing"
+    }
+
+  # aws_sns_topic.billing_alert_topic will be created
+  + resource "aws_sns_topic" "billing_alert_topic" {
+      + arn                         = (known after apply)
+      + beginning_archive_time      = (known after apply)
+      + content_based_deduplication = false
+      + fifo_topic                  = false
+      + id                          = (known after apply)
+      + name                        = "MyBillingAlertTopic"
+      + name_prefix                 = (known after apply)
+      + owner                       = (known after apply)
+      + policy                      = (known after apply)
+      + signature_version           = (known after apply)
+      + tags_all                    = (known after apply)
+      + tracing_config              = (known after apply)
+    }
+
+  # aws_sns_topic_subscription.email_subscription will be created
+  + resource "aws_sns_topic_subscription" "email_subscription" {
+      + arn                             = (known after apply)
+      + confirmation_timeout_in_minutes = 1
+      + confirmation_was_authenticated  = (known after apply)
+      + endpoint                        = "fernandomj90@gmail.com"
+      + endpoint_auto_confirms          = false
+      + filter_policy_scope             = (known after apply)
+      + id                              = (known after apply)
+      + owner_id                        = (known after apply)
+      + pending_confirmation            = (known after apply)
+      + protocol                        = "email"
+      + raw_message_delivery            = false
+      + topic_arn                       = (known after apply)
+    }
+
+Plan: 3 to add, 0 to change, 0 to destroy.
+
+Changes to Outputs:
+  + aws_account_id              = "058264180843"
+  + billing_alarm_arn           = (known after apply)
+  + billing_alert_topic_arn     = (known after apply)
+  + email_subscription_endpoint = "fernandomj90@gmail.com"
+aws_sns_topic.billing_alert_topic: Creating...
+aws_sns_topic.billing_alert_topic: Creation complete after 3s [id=arn:aws:sns:us-east-1:058264180843:MyBillingAlertTopic]
+aws_sns_topic_subscription.email_subscription: Creating...
+aws_cloudwatch_metric_alarm.billing_alarm: Creating...
+aws_sns_topic_subscription.email_subscription: Creation complete after 1s [id=arn:aws:sns:us-east-1:058264180843:MyBillingAlertTopic:240232cb-4480-4e83-b072-92dff8ceddbe]
+aws_cloudwatch_metric_alarm.billing_alarm: Creation complete after 1s [id=BillingAlarm]
+
+Apply complete! Resources: 3 added, 0 changed, 0 destroyed.
+
+Outputs:
+
+aws_account_id = "058264180843"
+billing_alarm_arn = "arn:aws:cloudwatch:us-east-1:058264180843:alarm:BillingAlarm"
+billing_alert_topic_arn = "arn:aws:sns:us-east-1:058264180843:MyBillingAlertTopic"
+email_subscription_endpoint = "fernandomj90@gmail.com"
+fernando@debian10x64:~/cursos/terraform/terraform-on-aws-with-sre-iac-devops-real-world-demos/Secao2-Terraform-Basics/alarmes-billing-aws$
+
+~~~~
+
+
+
+
+
+
+
+
+
+
+
+
+
+Subscription confirmed!
+
+You have successfully subscribed.

@@ -1,0 +1,1 @@
+11. Step-07: Update Terraform manifest with AMI ID and Region
