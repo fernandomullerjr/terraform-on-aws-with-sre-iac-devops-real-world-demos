@@ -286,3 +286,24 @@ Changes to Outputs:
 sandbox-fernando-labs
 
 #058264180843
+
+
+
+- Testando apply
+
+~~~~bash
+
+aws_s3_bucket.my_bucket: Creating...
+aws_s3_bucket.my_bucket: Creation complete after 5s [id=day67taskbucket-sandbox]
+
+Apply complete! Resources: 1 added, 0 changed, 0 destroyed.
+
+Outputs:
+
+aws_account_id = "058264180843"
+s3_bucket_arn = "arn:aws:s3:::day67taskbucket-sandbox"
+s3_bucket_domain_name = "day67taskbucket-sandbox.s3.amazonaws.com"
+s3_bucket_id = "day67taskbucket-sandbox"
+s3_bucket_region = "us-east-1"
+
+~~~~
