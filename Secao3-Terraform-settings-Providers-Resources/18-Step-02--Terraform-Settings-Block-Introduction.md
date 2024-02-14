@@ -44,3 +44,5 @@ terraform {
 - Sobre o ~>
 ~> 0.14" # which means any version equal & above 0.14 like 0.15, 0.16 etc and < 1.xx
 Significa que o Terraform aceita os minor version diferentes, mas não aceita mudanças na casa decimal anterior.
+
+- Cuidar a diferença do uso de chaves "{}" no Terraform Block e outros blocos, o "aws" por exemplo, é um argumento, e as chaves dentro dele são um map, não são um bloco.
