@@ -193,3 +193,15 @@ Observações importantes:
 
 
 
+
+
+
+# ############################################################################
+# ############################################################################
+# ############################################################################
+# RESUMO
+
+- Source addresses consist of three parts delimited by slashes (/), as follows:
+[<HOSTNAME>/]<NAMESPACE>/<TYPE>
+
+- If omitted HOSTNAME, this defaults to registry.terraform.io, the hostname of the public Terraform Registry.
