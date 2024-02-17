@@ -69,6 +69,35 @@ Este "Local name" é usado como aws normalmente.
 
 
 
+## Source Addresses
+
+https://developer.hashicorp.com/terraform/language/providers/requirements#source-addresses
+<https://developer.hashicorp.com/terraform/language/providers/requirements#source-addresses>
+
+A provider's source address is its global identifier. It also specifies the primary location where Terraform can download it.
+
+Source addresses consist of three parts delimited by slashes (/), as follows:
+
+[<HOSTNAME>/]<NAMESPACE>/<TYPE>
+
+Examples of valid provider source address formats include:
+
+    NAMESPACE/TYPE
+    HOSTNAME/NAMESPACE/TYPE
+
+    Hostname (optional): The hostname of the Terraform registry that distributes the provider. If omitted, this defaults to registry.terraform.io, the hostname of the public Terraform Registry.
+
+    Namespace: An organizational namespace within the specified registry. For the public Terraform Registry and for Terraform Cloud's private registry, this represents the organization that publishes the provider. This field may have other meanings for other registry hosts.
+
+    Type: A short name for the platform or system the provider manages. Must be unique within a particular namespace on a particular registry host.
+
+    The type is usually the provider's preferred local name. (There are exceptions; for example, hashicorp/google-beta is an alternate release channel for hashicorp/google, so its preferred local name is google. If in doubt, check the provider's documentation.)
+
+For example, the official HTTP provider belongs to the hashicorp namespace on registry.terraform.io, so its source address is registry.terraform.io/hashicorp/http or, more commonly, just hashicorp/http.
+
+The source address with all three components given explicitly is called the provider's fully-qualified address. You will see fully-qualified address in various outputs, like error messages, but in most cases a simplified display version is used. This display version omits the source host when it is the public registry, so you may see the shortened version "hashicorp/random" instead of "registry.terraform.io/hashicorp/random".
+
+
 
 O nome do source segue a convenção:
     <NOME_DO_AUTOR>/<NOME_DO_PROVEDOR>
@@ -87,7 +116,7 @@ No exemplo acima, hashicorp é o nome do autor e aws é o nome do provedor. Port
 
 
 
-
+## EXTRA
 
 O source de um required_providers no Terraform é um bloco de configuração que especifica os provedores que um módulo Terraform precisa para funcionar. Este bloco é essencial para garantir que o módulo possa ser usado com sucesso em diferentes ambientes, pois define as dependências de provedores do módulo.
 
@@ -155,3 +184,12 @@ Observações importantes:
     É recomendável especificar a versão mínima do provedor necessária para garantir a compatibilidade com o módulo.
     Ao usar provedores de repositórios Git, é importante verificar se a versão especificada é compatível com o módulo.
     Ao usar provedores locais, certifique-se de que o provedor esteja instalado e disponível no sistema antes de executar o Terraform.
+
+
+
+
+
+
+
+
+
