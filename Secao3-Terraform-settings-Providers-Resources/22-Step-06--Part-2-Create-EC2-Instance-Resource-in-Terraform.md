@@ -412,3 +412,136 @@ fernando@debian10x64:~/cursos/terraform/terraform-on-aws-with-sre-iac-devops-rea
 ## PENDENTE
 - Ver sobre erro "401 - Unauthorized" ao tentar acessar página com Metadata.
 http://44.202.134.47/app1/metadata.html
+
+
+
+
+
+## Dia 18/02/2024
+
+- Ver sobre erro "401 - Unauthorized" ao tentar acessar página com Metadata.
+http://44.202.134.47/app1/metadata.html
+
+
+cd /home/fernando/cursos/terraform/terraform-on-aws-with-sre-iac-devops-real-world-demos/Secao3-Terraform-settings-Providers-Resources/ec2-webserver
+terraform plan
+terraform apply -auto-approve
+
+~~~~bash
+Plan: 1 to add, 0 to change, 0 to destroy.
+aws_instance.myec2vm: Creating...
+aws_instance.myec2vm: Still creating... [10s elapsed]
+aws_instance.myec2vm: Still creating... [20s elapsed]
+aws_instance.myec2vm: Still creating... [30s elapsed]
+aws_instance.myec2vm: Creation complete after 35s [id=i-0347d2ec8c6e81a15]
+
+Apply complete! Resources: 1 added, 0 changed, 0 destroyed.
+~~~~
+
+Endereço IPv4 público
+ 3.82.249.206
+
+http://3.82.249.206/app1/metadata.html
+
+
+https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instancedata-dynamic-data-retrieval.html
+Retrieve dynamic data
+To retrieve dynamic data from within a running instance, use the following URI.
+http://169.254.169.254/latest/dynamic/
+
+This example shows how to retrieve the high-level instance identity categories.
+
+~~~~bash
+[ec2-user ~]$ TOKEN=`curl -X PUT "http://169.254.169.254/latest/api/token" -H "X-aws-ec2-metadata-token-ttl-seconds: 21600"` \
+&& curl -H "X-aws-ec2-metadata-token: $TOKEN" -v http://169.254.169.254/latest/dynamic/instance-identity/
+rsa2048
+pkcs7
+document
+signature
+dsa2048
+
+
+Ajustado:
+
+TOKEN=`curl -X PUT "http://169.254.169.254/latest/api/token" -H "X-aws-ec2-metadata-token-ttl-seconds: 21600"` \
+&& curl -H "X-aws-ec2-metadata-token: $TOKEN" -v http://169.254.169.254/latest/dynamic/instance-identity/ -o /var/www/html/app1/metadata.html
+~~~~
+
+
+
+cd /home/fernando/cursos/terraform/terraform-on-aws-with-sre-iac-devops-real-world-demos/Secao3-Terraform-settings-Providers-Resources/ec2-webserver
+terraform plan
+terraform apply -auto-approve
+
+ i-0d453b340e64a8db9 (EC2 Demo)
+Endereço IPv4 público
+ 44.206.226.104
+
+http://44.206.226.104/app1/metadata.html
+
+fernando@debian10x64:~/cursos/terraform/terraform-on-aws-with-sre-iac-devops-real-world-demos/Secao3-Terraform-settings-Providers-Resources/ec2-webserver$ curl http://44.206.226.104/app1/metadata.html
+document
+pkcs7
+rsa2048
+signature
+
+
+
+Endereço IPv4 público
+ 44.201.109.60
+
+http://44.201.109.60/app1/metadata.html
+
+ainda trouxe neste formato:
+
+~~~~bash
+
+fernando@debian10x64:~/cursos/terraform/terraform-on-aws-with-sre-iac-devops-real-world-demos/Secao3-Terraform-settings-Providers-Resources/ec2-webserver$ curl http://44.201.109.60/app1/metadata.html
+document
+pkcs7
+rsa2048
+signature
+
+~~~~
+
+
+
+- Ajustando o path, para document
+/home/fernando/cursos/terraform/terraform-on-aws-with-sre-iac-devops-real-world-demos/Secao3-Terraform-settings-Providers-Resources/ec2-webserver/app1-install.sh
+http://169.254.169.254/latest/dynamic/instance-identity/document
+
+- Efetuando destroy e novo apply
+
+Endereço IPv4 público
+ 54.175.204.171
+http://54.175.204.171/app1/metadata.html
+
+~~~~bash
+
+fernando@debian10x64:~/cursos/terraform/terraform-on-aws-with-sre-iac-devops-real-world-demos/Secao3-Terraform-settings-Providers-Resources/ec2-webserver$ curl http://54.175.204.171/app1/metadata.html
+{
+  "accountId" : "058264180843",
+  "architecture" : "x86_64",
+  "availabilityZone" : "us-east-1d",
+  "billingProducts" : null,
+  "devpayProductCodes" : null,
+  "marketplaceProductCodes" : null,
+  "imageId" : "ami-0e731c8a588258d0d",
+  "instanceId" : "i-0d1c1dff3381b4f95",
+  "instanceType" : "t2.micro",
+  "kernelId" : null,
+  "pendingTime" : "2024-02-18T13:28:11Z",
+  "privateIp" : "172.31.88.252",
+  "ramdiskId" : null,
+  "region" : "us-east-1",
+  "version" : "2017-09-30"
+}You have new mail in /var/mail/fernando
+fernando@debian10x64:~/cursos/terraform/terraform-on-aws-with-sre-iac-devops-real-world-demos/Secao3-Terraform-settings-Providers-Resources/ec2-webserver$
+fernando@debian10x64:~/cursos/terraform/terraform-on-aws-with-sre-iac-devops-real-world-demos/Secao3-Terraform-settings-Providers-Resources/ec2-webserver$
+fernando@debian10x64:~/cursos/terraform/terraform-on-aws-with-sre-iac-devops-real-world-demos/Secao3-Terraform-settings-Providers-Resources/ec2-webserver$
+fernando@debian10x64:~/cursos/terraform/terraform-on-aws-with-sre-iac-devops-real-world-demos/Secao3-Terraform-settings-Providers-Resources/ec2-webserver$
+fernando@debian10x64:~/cursos/terraform/terraform-on-aws-with-sre-iac-devops-real-world-demos/Secao3-Terraform-settings-Providers-Resources/ec2-webserver$ date
+Sun 18 Feb 2024 10:35:07 AM -03
+fernando@debian10x64:~/cursos/terraform/terraform-on-aws-with-sre-iac-devops-real-world-demos/Secao3-Terraform-settings-Providers-Resources/ec2-webserver$
+
+~~~~
