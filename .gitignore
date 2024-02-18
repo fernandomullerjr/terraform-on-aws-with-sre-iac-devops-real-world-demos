@@ -33,3 +33,9 @@ override.tf.json
 # Ignore CLI configuration files
 .terraformrc
 terraform.rc
+
+# SSH KEYS
+/Secao4-Terraform-Variables--Output-values-and-Datasources/terraform-manifests/terraform-key.pem
+terraform-key.pem
+**/terraform-key.pem
+*.pem

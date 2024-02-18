@@ -82,3 +82,8 @@ Note-1:  AWS Credentials Profile (profile = "default") configured on your local 
 $HOME/.aws/credentials
 */
 ~~~~
+
+
+
+- aJUSTANDO VARIÁVEL
+"t2.micro"
