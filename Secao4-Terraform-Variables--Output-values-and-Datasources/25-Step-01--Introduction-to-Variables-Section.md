@@ -29,3 +29,26 @@ Terraform Concepts
     Terraform Input Variables
     Terraform Datasources
     Terraform Output Values
+
+
+## What are we going to learn ?
+
+    Learn about Terraform Input Variable basics
+
+    AWS Region
+    Instance Type
+    Key Name
+
+    Define Security Groups and Associate them as a List item to AWS EC2 Instance
+
+    vpc-ssh
+    vpc-web
+
+    Learn about Terraform Output Values
+
+    Public IP
+    Public DNS
+
+    Get latest EC2 AMI ID Using Terraform Datasources concept
+    We are also going to use existing EC2 Key pair terraform-key
+    Use all the above to create an EC2 Instance in default VPC
