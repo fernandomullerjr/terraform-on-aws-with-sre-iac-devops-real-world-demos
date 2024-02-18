@@ -10,5 +10,6 @@ sudo echo '<!DOCTYPE html> <html> <body style="background-color:rgb(250, 210, 21
 
 # sudo curl http://169.254.169.254/latest/dynamic/instance-identity/document -o /var/www/html/app1/metadata.html    #### NÃO OK, gera erro "401 - Unauthorized" 
 
+## OK, Corrigido:
 TOKEN=`curl -X PUT "http://169.254.169.254/latest/api/token" -H "X-aws-ec2-metadata-token-ttl-seconds: 21600"` \
 && curl -H "X-aws-ec2-metadata-token: $TOKEN" -v http://169.254.169.254/latest/dynamic/instance-identity/document -o /var/www/html/app1/metadata.html
