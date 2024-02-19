@@ -106,3 +106,7 @@ Sun 18 Feb 2024 01:44:53 PM -03
 fernando@debian10x64:~/cursos/terraform/terraform-on-aws-with-sre-iac-devops-real-world-demos/Secao4-Terraform-Variables--Output-values-and-Datasources/terraform-manifests$
 
 ~~~~
+
+
+
+Se não é mencionada VPC no manifesto, o Terraform assume que o recurso vai ser criado na VPC Default.
