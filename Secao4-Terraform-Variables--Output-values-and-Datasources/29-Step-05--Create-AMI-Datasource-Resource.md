@@ -51,3 +51,13 @@ data "aws_ami" "amzlinux2" {
 
 # Reference Datasource to get the latest AMI ID
 ami = data.aws_ami.amzlinux2.id 
+
+
+
+
+
+
+
+<https://developer.hashicorp.com/terraform/language/data-sources>
+
+<https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/ami>
