@@ -34,3 +34,7 @@ output "instance_publicdns" {
   value = aws_instance.myec2vm.public_dns
 }
 ~~~~
+
+
+
+slide 80
