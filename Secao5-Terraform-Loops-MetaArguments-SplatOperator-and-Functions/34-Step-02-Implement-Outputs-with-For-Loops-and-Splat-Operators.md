@@ -68,7 +68,7 @@ output "latest_splat_instance_publicdns" {
 
 I'll explain the use of lists and maps in the given Terraform outputs, as well as the functionality of each part of the for expressions:
 
-Output - For Loop with List:
+## Output - For Loop with List:
 
 Purpose: Creates a list of public DNS names for all instances in the aws_instance.myec2vm resource.
 
@@ -78,7 +78,7 @@ Breakdown:
     for instance in aws_instance.myec2vm:: Iterates through each instance in the aws_instance.myec2vm resource.
     instance.public_dns: Accesses the public_dns attribute of the current instance in each iteration, appending it to the list.
 
-Output - For Loop with Map:
+## Output - For Loop with Map:
 
 Purpose: Creates a map (key-value pairs) associating instance IDs with their corresponding public DNS names.
 
@@ -106,9 +106,60 @@ When to Use:
 
 
 
+
+
+
+ChatGPT
+
+Esses são exemplos de como usar a função for em Terraform para iterar sobre recursos e criar listas ou mapas com base nos atributos desses recursos. Vamos analisar cada parte:
+
+    Output - For Loop with List:
+
+    hcl
+
+output "for_output_list" {
+  description = "For Loop with List"
+  value = [for instance in aws_instance.myec2vm: instance.public_dns]
+}
+
+    aws_instance.myec2vm: Isso presume que você tenha definido um recurso do tipo aws_instance com o nome myec2vm anteriormente em seu código Terraform. Este recurso provavelmente cria uma ou mais instâncias EC2 na AWS.
+    for instance in aws_instance.myec2vm: Isso itera sobre todas as instâncias EC2 criadas pelo recurso aws_instance.myec2vm.
+    instance.public_dns: Para cada instância EC2, isso obtém o seu DNS público.
+    [for instance in aws_instance.myec2vm: instance.public_dns]: Isso cria uma lista contendo o DNS público de todas as instâncias EC2.
+
+Output - For Loop with Map:
+
+hcl
+
+    output "for_output_map1" {
+      description = "For Loop with Map"
+      value = {for instance in aws_instance.myec2vm: instance.id => instance.public_dns}
+    }
+
+        aws_instance.myec2vm: Da mesma forma que antes, isso presume que você tenha definido um recurso do tipo aws_instance com o nome myec2vm.
+        for instance in aws_instance.myec2vm: Isso itera sobre todas as instâncias EC2 criadas pelo recurso aws_instance.myec2vm.
+        instance.id => instance.public_dns: Para cada instância EC2, isso cria uma entrada no mapa onde a chave é o ID da instância e o valor é o seu DNS público.
+
+Em resumo, ambos os exemplos usam a função for do Terraform para iterar sobre recursos e criar estruturas de dados (lista ou mapa) com base nos atributos desses recursos. Isso é útil para extrair informações específicas dos recursos criados e usá-las em outras partes do código Terraform ou para produzir saídas úteis.
+
+
+
+
+
+
+## PENDENTE
+- Video continua em
+05:24
+
+
+
+
 # ############################################################################
 # ############################################################################
 # ############################################################################
 # RESUMO
 
 - Cada iteração do "instance" no List, pega um valor e adiciona a lista.
+
+- Ao utilizar o map, o "instance.id => instance.public_dns" é um key:value, onde a Key é o instance id:
+    {for instance in aws_instance.myec2vm: instance.id => instance.public_dns}
