@@ -290,5 +290,5 @@ fernando@debian10x64:~/cursos/terraform/terraform-on-aws-with-sre-iac-devops-rea
 - Ao utilizar o map, o "instance.id => instance.public_dns" é um key:value, onde a Key é o instance id:
     {for instance in aws_instance.myec2vm: instance.id => instance.public_dns}
 
-- Neste exemplo o "c" representa um valor único, que é definido como chave neste map. Neste caso ele pega um valor como identificador único e atribui a esta chave:
+- Neste exemplo o "c" representa um valor único, que é definido como chave neste map. Neste caso ele pega um valor como identificador único e atribui a esta chave. Está pegando o index do count neste caso:
     value = {for c, instance in aws_instance.myec2vm: c => instance.public_dns}
