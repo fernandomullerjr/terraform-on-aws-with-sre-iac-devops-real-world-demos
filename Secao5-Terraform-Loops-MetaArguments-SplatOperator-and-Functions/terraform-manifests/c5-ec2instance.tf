@@ -1,3 +1,11 @@
+# Availability Zones Datasource
+data "aws_availability_zones" "my_azones" {
+  filter {
+    name   = "opt-in-status"
+    values = ["opt-in-not-required"]
+  }
+}
+
 # EC2 Instance
 resource "aws_instance" "myec2vm" {
   ami                    = data.aws_ami.amzlinux2.id
