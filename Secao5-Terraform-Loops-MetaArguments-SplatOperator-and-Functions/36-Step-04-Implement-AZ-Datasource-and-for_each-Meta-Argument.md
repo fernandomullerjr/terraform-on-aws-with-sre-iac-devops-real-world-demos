@@ -134,6 +134,69 @@ Pass a list value to toset to convert it to a set, which will remove any duplica
 
 
 
+- Código de referência, utilizando o for_each, toset, etc:
+
+### Step-03-02: EC2 Instance Resource
+
+```tf
+# EC2 Instance
+resource "aws_instance" "myec2vm" {
+  ami = data.aws_ami.amzlinux2.id
+  instance_type = var.instance_type
+  user_data = file("${path.module}/app1-install.sh")
+  key_name = var.instance_keypair
+  vpc_security_group_ids = [ aws_security_group.vpc-ssh.id, aws_security_group.vpc-web.id   ]
+  # Create EC2 Instance in all Availabilty Zones of a VPC  
+  for_each = toset(data.aws_availability_zones.my_azones.names)
+  availability_zone = each.key # You can also use each.value because for list items each.key == each.value
+  tags = {
+    "Name" = "For-Each-Demo-${each.key}"
+  }
+}
+```
+
+
+
+
+
+- Ajustando o manifesto
+
+comentando o count
+comentando as tags do count
+
+adicionando:
+
+~~~~t
+  # Create EC2 Instance in all Availabilty Zones of a VPC  
+  for_each = toset(data.aws_availability_zones.my_azones.names)
+  availability_zone = each.key # You can also use each.value because for list items each.key == each.value
+  tags = {
+    "Name" = "For-Each-Demo-${each.key}"
+  }
+~~~~
+
+
+
+- Efetuando plan
+
+erro
+
+~~~~bash
+
+│ Error: Unsupported attribute
+│
+│   on c6-outputs.tf line 45, in output "latest_splat_instance_publicdns":
+│   45:   value = aws_instance.myec2vm[*].public_dns
+│
+│ This object does not have an attribute named "public_dns".
+╵
+
+~~~~
+
+
+
+
+
 
 # ############################################################################
 # ############################################################################
@@ -146,3 +209,5 @@ Pass a list value to toset to convert it to a set, which will remove any duplica
 
 - Coleção do set não é ordenada.
 - Valores duplicados são eliminados.
+
+- No caso do set, o "each.key" equivale ao "each.value", devido a lista de items.
