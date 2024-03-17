@@ -248,3 +248,129 @@ output "output_v3_2" {
         ]
     }
 ~~~~
+
+
+
+
+
+
+
+- Caso queira retornar apenas as keys, é possível utilizando a função "keys":
+
+<https://developer.hashicorp.com/terraform/language/functions/keys>
+keys Function
+
+keys takes a map and returns a list containing the keys from that map.
+
+The keys are returned in lexicographical order, ensuring that the result will be identical as long as the keys in the map don't change.
+Examples
+
+> keys({a=1, c=2, d=3})
+[
+  "a",
+  "c",
+  "d",
+]
+
+
+- Código do Output-3, que traz somente as chaves:
+
+~~~~tf
+# Output-3
+# Filtered Output: with Keys Function - Which gets keys from a Map
+# This will return the list of availability zones supported for a instance type
+output "output_v3_3" {
+  value = keys({
+    for az, details in data.aws_ec2_instance_type_offerings.my_ins_type: 
+    az => details.instance_types if length(details.instance_types) != 0 })
+}
+~~~~
+
+- Isto resulta um output mais limpo, somente com os AZ's:
+
+~~~~bash
+ + output_v3_3 = [
+      + "us-east-1a",
+      + "us-east-1b",
+      + "us-east-1c",
+      + "us-east-1d",
+      + "us-east-1f",
+    ]
+~~~~
+
+
+
+
+
+
+- Caso queira trazer apenas o valor de 1 chave da listagem, basta colocar [0] ao final do código:
+
+~~~~tf
+# Output-4 (additional learning)
+# Filtered Output: As the output is list now, get the first item from list (just for learning)
+output "output_v3_4" {
+  value = keys({
+    for az, details in data.aws_ec2_instance_type_offerings.my_ins_type: 
+    az => details.instance_types if length(details.instance_types) != 0 })[0]
+}
+~~~~
+
+- Resultado do output com 1 valor apenas:
+
+~~~~bash
+ + output_v3_4 = "us-east-1a"
+~~~~
+
+
+
+
+## Step-06: Clean-Up
+```t
+# Terraform Destroy
+terraform destroy -auto-approve
+
+# Delete Files
+rm -rf .terraform*
+rm -rf terraform.tfstate*
+```
+
+
+
+- Efetuando limpezas em pastas.
+- Destroys
+
+~~~~bash
+Plan: 0 to add, 0 to change, 1 to destroy.
+
+Changes to Outputs:
+  - aws_account_id        = "058264180843" -> null
+  - s3_bucket_arn         = "arn:aws:s3:::day67taskbucket-sandbox" -> null
+  - s3_bucket_domain_name = "day67taskbucket-sandbox.s3.amazonaws.com" -> null
+  - s3_bucket_id          = "day67taskbucket-sandbox" -> null
+  - s3_bucket_region      = "us-east-1" -> null
+aws_s3_bucket.my_bucket: Destroying... [id=day67taskbucket-sandbox]
+aws_s3_bucket.my_bucket: Destruction complete after 1s
+
+Destroy complete! Resources: 1 destroyed.
+fernando@debian10x64:~/cursos/terraform/terraform-on-aws-with-sre-iac-devops-real-world-demos/Secao2-Terraform-Basics/teste-terraform$
+fernando@debian10x64:~/cursos/terraform/terraform-on-aws-with-sre-iac-devops-real-world-demos/Secao2-Terraform-Basics/teste-terraform$ rm -rf .terraform*
+fernando@debian10x64:~/cursos/terraform/terraform-on-aws-with-sre-iac-devops-real-world-demos/Secao2-Terraform-Basics/teste-terraform$ rm -rf terraform.tfstate*
+fernando@debian10x64:~/cursos/terraform/terraform-on-aws-with-sre-iac-devops-real-world-demos/Secao2-Terraform-Basics/teste-terraform$
+fernando@debian10x64:~/cursos/terraform/terraform-on-aws-with-sre-iac-devops-real-world-demos/Secao2-Terraform-Basics/teste-terraform$
+~~~~
+
+
+
+
+# ############################################################################
+# ############################################################################
+# ############################################################################
+# RESUMO
+
+- Para trazer no output apenas os AZ que suportam a familia de EC2, podemos utilizar uma condição if que retorna apenas os valores diferentes de 0:
+    az => details.instance_types if length(details.instance_types) != 0 }
+
+- Caso queira retornar apenas as keys, é possível utilizando a função "keys":
+    <https://developer.hashicorp.com/terraform/language/functions/keys>
+    Basta utilizar keys e colocar entre parenteses os key:value que serão considerados:
+    keys()
