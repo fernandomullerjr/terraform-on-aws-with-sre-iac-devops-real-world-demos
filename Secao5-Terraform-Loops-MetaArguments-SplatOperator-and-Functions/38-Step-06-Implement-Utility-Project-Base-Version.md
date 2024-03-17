@@ -70,6 +70,35 @@ output "output_v1_1" {
 }
 ```
 
+### Step-03-02: Execute Terraform Commands
+```t
+# Terraform Initialize
+terraform init
+
+# Terraform Validate
+terraform validate
+
+# Terraform Plan
+terraform plan
+terraform apply -auto-approve
+Observation: 
+1. Output should have the instance value `t3.micro` when `values = ["us-east-1a"]` in location filter
+# Sample Output
+output_v1_1 = toset([
+  "t3.micro",
+])
+
+# Make a change
+Switch the values in `location` filter to `values = ["us-east-1e"]` and test again with `terraform plan`
+
+# Terraform Plan
+terraform plan
+terraform apply -auto-approve
+Observation: 
+1. Output should have the instance value empty `[]` when `values = ["us-east-1e"]` in location filter
+# Sample Output
+output_v1_1 = toset([])
+```
 
 
 # ############################################################################
