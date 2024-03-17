@@ -336,3 +336,5 @@ criou as EC2 em todas as AZ:
 - O meta-argumento for_each aceita um map ou um conjunto de strings e cria uma instância para cada item nesse map ou set.
 
 - map requires all of the elements to be of the same type, mixed-typed elements will be converted to the most general type
+
+- "tomap" é interessante quando os valores precisam ser do mesmo tipo.
