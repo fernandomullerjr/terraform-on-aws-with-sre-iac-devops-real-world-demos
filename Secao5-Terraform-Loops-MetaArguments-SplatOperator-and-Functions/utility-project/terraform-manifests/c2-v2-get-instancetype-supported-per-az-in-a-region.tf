@@ -14,7 +14,6 @@ data "aws_ec2_instance_type_offerings" "my_ins_type2" {
   location_type = "availability-zone"
 }
 
-
 #Output-1
 # Important Note: Once for_each is set, its attributes must be accessed on specific instances
 output "output_v2_1" {
