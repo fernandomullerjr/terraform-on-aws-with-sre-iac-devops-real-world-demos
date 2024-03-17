@@ -48,6 +48,27 @@ provider "aws" {
 aws ec2 describe-instance-type-offerings --location-type availability-zone  --filters Name=instance-type,Values=t3.micro --region us-east-1 --output table
 ```
 
+### Step-03-01: Review / Create the datasource and its output
+```t
+# Datasource
+data "aws_ec2_instance_type_offerings" "my_ins_type1" {
+  filter {
+    name   = "instance-type"
+    values = ["t3.micro"]
+  }
+  filter {
+    name   = "location"
+    values = ["us-east-1a"]
+    #values = ["us-east-1e"]    
+  }
+  location_type = "availability-zone"
+}
+
+# Output
+output "output_v1_1" {
+ value = data.aws_ec2_instance_type_offerings.my_ins_type1.instance_types
+}
+```
 
 
 
@@ -134,3 +155,73 @@ fernando@debian10x64:~/cursos/terraform/terraform-on-aws-with-sre-iac-devops-rea
 
 
 
+- Iremos utilizar o data source "aws_ec2_instance_type_offerings", para obter as familias de EC2 ofertadas na região e AZ's:
+
+```tf
+# Datasource
+data "aws_ec2_instance_type_offerings" "my_ins_type1" {
+  filter {
+    name   = "instance-type"
+    values = ["t3.micro"]
+  }
+  filter {
+    name   = "location"
+    values = ["us-east-1a"]
+    #values = ["us-east-1e"]    
+  }
+  location_type = "availability-zone"
+}
+
+# Output
+output "output_v1_1" {
+ value = data.aws_ec2_instance_type_offerings.my_ins_type1.instance_types
+}
+```
+
+
+
+
+- Testando o código, validando se a familia é ofertada na "us-east-1a":
+
+  filter {
+    name   = "location"
+    values = ["us-east-1a"]
+    #values = ["us-east-1e"]    
+  }
+
+~~~~bash
+fernando@debian10x64:~/cursos/terraform/terraform-on-aws-with-sre-iac-devops-real-world-demos/Secao5-Terraform-Loops-MetaArguments-SplatOperator-and-Functions/utility-project/testes-especificos$ terraform plan
+data.aws_ec2_instance_type_offerings.my_ins_type1: Reading...
+data.aws_ec2_instance_type_offerings.my_ins_type1: Read complete after 1s [id=us-east-1]
+
+Changes to Outputs:
+  + output_v1_1 = [
+      + "t3.micro",
+    ]
+
+You can apply this plan to save these new output values to the Terraform state, without changing any real infrastructure.
+~~~~
+
+
+
+
+- Testando o código, validando se a familia é ofertada na "us-east-1e":
+
+  filter {
+    name   = "location"
+    #values = ["us-east-1a"]
+    values = ["us-east-1e"]    
+  }
+
+~~~~bash
+fernando@debian10x64:~/cursos/terraform/terraform-on-aws-with-sre-iac-devops-real-world-demos/Secao5-Terraform-Loops-MetaArguments-SplatOperator-and-Functions/utility-project/testes-especificos$ terraform plan
+data.aws_ec2_instance_type_offerings.my_ins_type1: Reading...
+data.aws_ec2_instance_type_offerings.my_ins_type1: Read complete after 1s [id=us-east-1]
+
+Changes to Outputs:
+  + output_v1_1 = []
+
+You can apply this plan to save these new output values to the Terraform state, without changing any real infrastructure.
+~~~~
+
+Retornou vazio o output.
