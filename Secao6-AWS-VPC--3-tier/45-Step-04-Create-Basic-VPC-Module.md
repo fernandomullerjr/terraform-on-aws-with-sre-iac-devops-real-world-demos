@@ -76,3 +76,27 @@ module "vpc" {
   }
 }
 ```
+
+
+
+
+
+
+
+# ############################################################################
+# ############################################################################
+# ############################################################################
+# 45. Step-04: Create Basic VPC Module
+
+
+- [Terraform AWS VPC Module](https://registry.terraform.io/modules/terraform-aws-modules/vpc/aws/latest)
+
+
+- Ao declarar o nome "vpc", é personalizável, poderia ser module "myvpc", por exemplo:
+
+~~~~tf
+module "myvpc" {
+  source  = "terraform-aws-modules/vpc/aws"
+  version = "5.7.0"
+}
+~~~~
