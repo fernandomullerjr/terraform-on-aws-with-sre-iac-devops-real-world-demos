@@ -144,6 +144,11 @@ rm -rf terraform.tfstate*
 # ############################################################################
 # 41. Step-09: Implement fix for az to instance type check and test
 
+- Material
+https://github.com/stacksimplify/terraform-on-aws-ec2/blob/main/05-Terraform-Loops-MetaArguments-SplatOperator/05-04-for_each-with-az-instancetype-check/terraform-manifests/c7-get-instancetype-supported-per-az-in-a-region.tf
+<https://github.com/stacksimplify/terraform-on-aws-ec2/blob/main/05-Terraform-Loops-MetaArguments-SplatOperator/05-04-for_each-with-az-instancetype-check/terraform-manifests/c7-get-instancetype-supported-per-az-in-a-region.tf>
+
+
 - Diretório de base:
 /home/fernando/cursos/terraform/terraform-on-aws-with-sre-iac-devops-real-world-demos/Secao5-Terraform-Loops-MetaArguments-SplatOperator-and-Functions/05-04-for_each-with-az-instancetype-check
 terraform-on-aws-with-sre-iac-devops-real-world-demos/Secao5-Terraform-Loops-MetaArguments-SplatOperator-and-Functions/05-04-for_each-with-az-instancetype-check
@@ -157,7 +162,7 @@ output "output_v3_3" {
 }
 ~~~~
 
-- No manifesto da EC2, necessário colocar dentro do toset a expressão usada no output e adicionar os parenteses:
+- No manifesto da EC2, para o for_each é necessário colocar dentro do toset a expressão usada no output e adicionar os parenteses:
 
 ~~~~t
   for_each = toset(keys({ for az, details in data.aws_ec2_instance_type_offerings.my_ins_type :
