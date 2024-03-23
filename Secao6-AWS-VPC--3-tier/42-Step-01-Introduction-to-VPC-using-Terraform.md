@@ -15,3 +15,6 @@ git status
 # ############################################################################
 # ############################################################################
 # 42. Step-01: Introduction to VPC using Terraform
+
+- Material
+<https://github.com/stacksimplify/terraform-on-aws-ec2/tree/main/06-AWS-VPC/06-01-AWS-VPC-using-Mgmt-Console>
