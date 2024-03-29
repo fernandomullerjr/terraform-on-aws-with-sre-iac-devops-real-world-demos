@@ -100,3 +100,29 @@ module "myvpc" {
   version = "5.7.0"
 }
 ~~~~
+
+
+
+
+
+
+# ############################################################################
+# ############################################################################
+# ############################################################################
+# RESUMO
+
+- Diferença entre bloco Terraform e argumentos.
+
+## Bloco Terraform
+
+terraform {
+
+}
+
+## Argumento
+
+tem o sinal de igual antes das chaves
+
+  public_subnet_tags = {
+    Type = "public-subnets"
+  }
