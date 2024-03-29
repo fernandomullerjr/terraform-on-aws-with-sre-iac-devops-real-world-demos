@@ -732,3 +732,44 @@ Plan: 25 to add, 0 to change, 0 to destroy.
 
 # Terraform Apply
 terraform apply -auto-approve
+
+
+Apply complete! Resources: 25 added, 0 changed, 0 destroyed.
+
+
+
+- Criou subnets privadas, publicas, exclusiva pro db, tudo certo:
+
+vpc-dev-db-us-east-1a	subnet-048d8e0f8acd2b9a5	
+Available	vpc-0a540ceb1eda062a6 | vpc-dev	10.0.151.0/24	–	251	us-east-1a	use1-az4	us-east-1	rtb-065016db1ac224644 | vpc-dev-db	acl-09d3c45739ffbf6e8 | vpc-dev-default	Não	Não	Não	-	Não	058264180843
+	vpc-dev-db-us-east-1b	subnet-003b468606108ca2b	
+Available	vpc-0a540ceb1eda062a6 | vpc-dev	10.0.152.0/24	–	251	us-east-1b	use1-az6	us-east-1	rtb-065016db1ac224644 | vpc-dev-db	acl-09d3c45739ffbf6e8 | vpc-dev-default	Não	Não	Não	-	Não	058264180843
+	vpc-dev-private-us-east-1a	subnet-06ece6654da62acec	
+Available	vpc-0a540ceb1eda062a6 | vpc-dev	10.0.1.0/24	–	251	us-east-1a	use1-az4	us-east-1	rtb-010555aeb0c32c76a | vpc-dev-private	acl-09d3c45739ffbf6e8 | vpc-dev-default	Não	Não	Não	-	Não	058264180843
+	vpc-dev-private-us-east-1b	subnet-0e010524feaca5e9c	
+Available	vpc-0a540ceb1eda062a6 | vpc-dev	10.0.2.0/24	–	251	us-east-1b	use1-az6	us-east-1	rtb-010555aeb0c32c76a | vpc-dev-private	acl-09d3c45739ffbf6e8 | vpc-dev-default	Não	Não	Não	-	Não	058264180843
+	vpc-dev-public-us-east-1a	subnet-0c92de3cdb3b3d6db	
+Available	vpc-0a540ceb1eda062a6 | vpc-dev	10.0.101.0/24	–	250	us-east-1a	use1-az4	us-east-1	rtb-015fd5151426e24dd | vpc-dev-public	acl-09d3c45739ffbf6e8 | vpc-dev-default	Não	Não	Não	-	Não	058264180843
+	vpc-dev-public-us-east-1b	subnet-01b1f59f26601be56	
+Available	vpc-0a540ceb1eda062a6 | vpc-dev	10.0.102.0/24	–	251	us-east-1b	use1-az6	us-east-1	rtb-015fd5151426e24dd | vpc-dev-public	acl-09d3c45739ffbf6e8 | vpc-dev-default	Não	Não	Não	-	Não	058264180843
+
+
+
+- Route-tables:
+
+vpc-dev-db	rtb-065016db1ac224644	
+	–	Não	vpc-0a540ceb1eda062a6 | vpc-dev	058264180843
+	vpc-dev-public	rtb-015fd5151426e24dd	
+	–	Não	vpc-0a540ceb1eda062a6 | vpc-dev	058264180843
+	vpc-dev-private	rtb-010555aeb0c32c76a	
+	–	Não	vpc-0a540ceb1eda062a6 | vpc-dev	058264180843
+	vpc-dev-default	rtb-0301b3d027148df67	–	–	Sim	vpc-0a540ceb1eda062a6 | vpc-dev	058264180843
+
+
+
+# Terraform Destroy
+terraform destroy -auto-approve
+
+# Delete Files
+rm -rf .terraform*
+rm -rf terraform.tfstate*
