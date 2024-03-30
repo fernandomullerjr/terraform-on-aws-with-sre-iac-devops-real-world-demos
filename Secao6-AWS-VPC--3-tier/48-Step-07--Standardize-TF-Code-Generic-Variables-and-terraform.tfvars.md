@@ -83,3 +83,39 @@ A precedência de variáveis no Terraform define a ordem em que o Terraform busc
     Bloco var no arquivo Terraform: Valores definidos dentro do bloco var no próprio arquivo de configuração do Terraform (.tf) têm a precedência mais baixa.
 
 Em resumo, o Terraform vai buscar o valor de uma variável primeiro nas variáveis de ambiente, depois no arquivo .tfvars, depois na linha de comando e por último no bloco var dentro do arquivo de configuração.
+
+
+
+
+## Explicação adicional sobre precedencia de variáveis no Terraform
+
+No Terraform, é possível utilizar diversos métodos de configuração de variáveis em qualquer combinação. Isso sempre me confunde, então mantive aqui para consultá-lo em vez de consultar a documentação do Terraform.
+
+O Terraform usará o último valor encontrado e substituirá quaisquer valores anteriores se uma variável receber vários valores. Lembre-se de que uma variável não pode receber vários valores dentro de uma fonte.
+
+O Terraform carrega variáveis na seguinte ordem: as fontes posteriores têm precedência.
+
+     Variáveis ​​ambientais
+     O arquivo terraform.tfvars, se presente.
+     O arquivo terraform.tfvars.json, se presente.
+     Quaisquer arquivos *.auto.tfvars ou *.auto.tfvars.json, processados em ordem lexical de seus nomes de arquivo.
+     Quaisquer opções -var e -var-file na linha de comando, na ordem em que são fornecidas. (Isso inclui variáveis definidas por um espaço de trabalho do Terraform Cloud.)
+
+
+
+
+
+<https://dataisadope.com/blog/terraform-variable-definition-precedence/>
+Terraform loads variables in the following order: later sources take precedence.
+
+    Environment variables
+    The terraform.tfvars file, if present.
+    The terraform.tfvars.json file, if present.
+    Any *.auto.tfvars or *.auto.tfvars.json files, processed in lexical order of their filenames.
+    Any -var and -var-file options on the command line, in the order they are provided. (This includes variables set by a Terraform Cloud workspace.)
+
+
+
+## Melhor explicação
+- Melhor explicação sobre precedencia:
+<https://www.oreilly.com/library/view/hashicorp-certified-terraform/9780138195366/HCT1_01_07_07.html>
