@@ -43,6 +43,59 @@ locals {
 
 [Local Values](https://www.terraform.io/docs/language/values/locals.html)
 
+# Declaring a Local Value
+
+A set of related local values can be declared together in a single locals block:
+
+~~~~tf
+locals {
+  service_name = "forum"
+  owner        = "Community Team"
+}
+~~~~
+
+The expressions in local values are not limited to literal constants; they can also reference other values in the module in order to transform or combine them, including variables, resource attributes, or other local values:
+
+~~~~tf
+locals {
+  # Ids for multiple sets of EC2 instances, merged together
+  instance_ids = concat(aws_instance.blue.*.id, aws_instance.green.*.id)
+}
+
+locals {
+  # Common tags to be assigned to all resources
+  common_tags = {
+    Service = local.service_name
+    Owner   = local.owner
+  }
+}
+~~~~
+
+
+- Exemplo:
+
+terraform-on-aws-with-sre-iac-devops-real-world-demos/Secao6-AWS-VPC--3-tier/v2-vpc-module-standardized/c3-local-values.tf
+
+~~~~tf
+# Define Local Values in Terraform
+locals {
+  owners = var.business_divsion
+  environment = var.environment
+  name = "${var.business_divsion}-${var.environment}"
+  #name = "${local.owners}-${local.environment}"
+  common_tags = {
+    owners = local.owners
+    environment = local.environment
+  }
+} 
+~~~~
+
+É possível criar Locals que referenciam variáveis, outras locals, etc
+
+
+
+# Detalhes adicionais sobre Locals
+
 
 No Terraform, as "locals" são blocos usados para definir valores intermediários ou calculados dentro de um arquivo de configuração. Eles permitem atribuir valores a variáveis que são usadas várias vezes em diferentes partes do seu código Terraform. Isso pode tornar seu código mais legível, mais fácil de manter e menos propenso a erros.
 
@@ -74,8 +127,6 @@ As vantagens de usar locals incluem:
     Escopo local: Os locals são escopos apenas dentro do arquivo Terraform em que são definidos, o que os torna úteis para criar variáveis locais que não precisam ser expostas fora do arquivo.
 
 Em resumo, os locals são uma ferramenta útil para melhorar a organização, legibilidade e manutenção do seu código Terraform.
-
-
 
 
 
@@ -147,8 +198,6 @@ resource "aws_instance" "web" {
 ~~~~
 
 Neste exemplo, a local vpc_id armazena o ID da VPC principal e a local subnet_ids armazena uma lista de IDs das sub-redes. As locals são então usadas para definir os valores das propriedades vpc_id e subnet_id da instância aws_instance.
-
-
 
 
 
@@ -262,6 +311,8 @@ Em resumo:
 # RESUMO
 
 - O valor da local pode ser uma expressão complexa, incluindo outras locals, variáveis, funções e recursos do Terraform.
+
+- Procurar utilizar as *locals* em situações onde o valor precisa ser alterado diversas vezes e precisam ser feitas expressões complexas.
 
 - As locals e as expressões são ferramentas complementares que podem ser usadas para definir valores dinâmicos no Terraform. As locals são mais adequadas para armazenar valores intermediários ou resultados de cálculos complexos, enquanto as expressões são mais adequadas para realizar cálculos dinâmicos simples. A combinação de locals e expressões permite criar código Terraform mais modular, reutilizável e legível.
 
