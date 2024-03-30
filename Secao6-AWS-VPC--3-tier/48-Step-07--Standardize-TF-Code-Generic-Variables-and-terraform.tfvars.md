@@ -119,3 +119,10 @@ Terraform loads variables in the following order: later sources take precedence.
 ## Melhor explicação
 - Melhor explicação sobre precedencia:
 <https://www.oreilly.com/library/view/hashicorp-certified-terraform/9780138195366/HCT1_01_07_07.html>
+
+
+
+- As variáveis informadas no arquivo *terraform.tfvars* sobrepõem os valores das variáveis existentes no arquivo *c2-generic-variables.tf*
+
+terraform-on-aws-with-sre-iac-devops-real-world-demos/Secao6-AWS-VPC--3-tier/v2-vpc-module-standardized/terraform.tfvars
+terraform-on-aws-with-sre-iac-devops-real-world-demos/Secao6-AWS-VPC--3-tier/v2-vpc-module-standardized/c2-generic-variables.tf
