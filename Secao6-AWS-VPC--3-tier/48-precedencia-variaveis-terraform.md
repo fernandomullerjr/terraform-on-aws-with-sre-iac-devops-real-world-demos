@@ -1,56 +1,21 @@
 
-# ############################################################################
-# ############################################################################
-# ############################################################################
-# Git - Efetuando Push
-
-git status
-git add .
-git commit -m "48. Step-07: Standardize TF Code - Generic Variables and terraform.tfvars"
-git push
-git status
-
-
-# ############################################################################
-# ############################################################################
-# ############################################################################
-# 48. Step-07: Standardize TF Code - Generic Variables and terraform.tfvars
-
-## Step-05: v2-vpc-module-standardized - Standardized and Generalized
-- In the next series of steps we are going to standardize the VPC configuration
-- c2-generic-variables.tf
-```t
-# Input Variables
-# AWS Region
-variable "aws_region" {
-  description = "Region in which AWS Resources to be created"
-  type = string
-  default = "us-east-1"  
-}
-# Environment Variable
-variable "environment" {
-  description = "Environment Variable used as a prefix"
-  type = string
-  default = "dev"
-}
-# Business Division
-variable "business_divsion" {
-  description = "Business Division in the large organization this Infrastructure belongs"
-  type = string
-  default = "HR"
-}
-```
 
 
 
+- Precedencia das variáveis no Terraform:
 
-# ############################################################################
-# ############################################################################
-# ############################################################################
-# 48. Step-07: Standardize TF Code - Generic Variables and terraform.tfvars
+https://www.terraform.io/language/values/variables
+Variable Definition Precedence
 
-- Copiando os manifestos para a pasta "v2-vpc-module-standardized":
-terraform-on-aws-with-sre-iac-devops-real-world-demos/Secao6-AWS-VPC--3-tier/v2-vpc-module-standardized
+Terraform loads variables in the following order, with later sources taking precedence over earlier ones:
+
+    Environment variables
+    The terraform.tfvars file, if present.
+    The terraform.tfvars.json file, if present.
+    Any *.auto.tfvars or *.auto.tfvars.json files, processed in lexical order of their filenames.
+    Any -var and -var-file options on the command line, in the order they are provided. (This includes variables set by a Terraform Cloud workspace.)
+
+
 
 
 ## ChatGPT
