@@ -36,6 +36,8 @@ terraform.rc
 
 # SSH KEYS
 /Secao4-Terraform-Variables--Output-values-and-Datasources/terraform-manifests/terraform-key.pem
+/home/fernando/cursos/terraform/terraform-on-aws-with-sre-iac-devops-real-world-demos/Secao7-AWS-EC2-instances-and-Security-groups/manifestos/private-key
+/Secao7-AWS-EC2-instances-and-Security-groups/manifestos/private-key
 terraform-key.pem
 **/terraform-key.pem
 *.pem

@@ -47,6 +47,39 @@ git status
 - Copy your AWS EC2 Key pair `terraform-key.pem` in `private-key` folder
 - Folder name `local-exec-output-files` where `local-exec` provisioner creates a file (creation-time provisioner)
 
+local-exec-output-files` where `local-exec` provisioner creates a file (creation-time provisioner)
+
+
+## Step-02: Copy all the VPC TF Config files from 06-02
+- Copy the following TF Config files from 06-02 section which will create a 3-Tier VPC
+- c1-versions.tf
+- c2-generic-variables.tf
+- c3-local-values.tf
+- c4-01-vpc-variables.tf
+- c4-02-vpc-module.tf
+- c4-03-vpc-outputs.tf
+- terraform.tfvars
+- vpc.auto.tfvars
+- private-key/terraform-key.pem
+
+## Step-03: Add app1-install.sh
+
+- Add `app1-install.sh` in working directory
+
+```sh
+#! /bin/bash
+# Instance Identity Metadata Reference - https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-identity-documents.html
+sudo yum update -y
+sudo yum install -y httpd
+sudo systemctl enable httpd
+sudo service httpd start  
+sudo echo '<h1>Welcome to StackSimplify - APP-1</h1>' | sudo tee /var/www/html/index.html
+sudo mkdir /var/www/html/app1
+sudo echo '<!DOCTYPE html> <html> <body style="background-color:rgb(250, 210, 210);"> <h1>Welcome to Stack Simplify - APP-1</h1> <p>Terraform Demo</p> <p>Application Version: V1</p> </body></html>' | sudo tee /var/www/html/app1/index.html
+sudo curl http://169.254.169.254/latest/dynamic/instance-identity/document -o /var/www/html/app1/metadata.html
+```
+
+
 
 
 # ############################################################################
