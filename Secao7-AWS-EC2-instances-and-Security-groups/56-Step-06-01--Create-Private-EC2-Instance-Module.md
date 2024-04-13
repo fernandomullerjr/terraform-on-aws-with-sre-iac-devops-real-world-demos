@@ -112,6 +112,15 @@ Use the depends_on meta-argument to handle hidden resource or module dependencie
 
 
 
+- Como usamos uma EC2 privada neste caso
+e esta EC2 utiliza user_data para instalar o httpd
+ela vai precisar usar o NAT Gateway
+porém o NAT Gateway pode levar algum tempo até ser provisionado
+então é necessário utilizar:
+depends_on = [ module.vpc ]
+
+
+
 - Manifesto coletado do zip:
 
 ~~~~tf
@@ -162,3 +171,6 @@ module "ec2_private" {
 # RESUMO / IMPORTANTE
 
 - Use the depends_on meta-argument to handle hidden resource or module dependencies that Terraform cannot automatically infer.
+
+- Como usamos uma EC2 privada neste caso, e esta EC2 utiliza user_data para instalar o httpd, ela vai precisar usar o NAT Gateway. Então é necessário utilizar o Meta-argument "depends_on":
+depends_on = [ module.vpc ]
