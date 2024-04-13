@@ -160,6 +160,9 @@ module "ec2_private" {
 ~~~~
 
 
+Ele está na versão mais recente, que é conteúdo da próxima aula a principio:
+57. Step-06-02: EC2 Instance Module Upgrade
+
 
 
 
