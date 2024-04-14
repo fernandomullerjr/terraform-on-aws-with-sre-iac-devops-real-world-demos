@@ -32,7 +32,7 @@ git status
 ```
 
 
-
+## Provider - Versions
 
 - Ajustar o arquivo c1-versions.tf
 incluir o provider null
@@ -79,10 +79,11 @@ $HOME/.aws/credentials
 
 <https://registry.terraform.io/providers/hashicorp/null/latest/docs/resources/resource>
 
+null_resource
+
 The null_resource resource implements the standard resource lifecycle but takes no further action. On Terraform 1.4 and later, use the terraform_data resource type instead.
 
 The triggers argument allows specifying an arbitrary set of values that, when changed, will cause the resource to be replaced.
-Example Usage
 
 ~~~~tf
 resource "aws_instance" "cluster" {
@@ -192,15 +193,86 @@ Provisioners
 You can use provisioners to model specific actions on the local machine or on a remote machine in order to prepare servers or other infrastructure objects for service.
 
 
+### Provisioners are a Last Resort
+
+    Hands-on: Try the Provision Infrastructure Deployed with Terraform tutorials to learn about more declarative ways to handle provisioning actions.
+
+Terraform includes the concept of provisioners as a measure of pragmatism, knowing that there are always certain behaviors that cannot be directly represented in Terraform's declarative model.
+
+However, they also add a considerable amount of complexity and uncertainty to Terraform usage. Firstly, Terraform cannot model the actions of provisioners as part of a plan because they can in principle take any action. Secondly, successful use of provisioners requires coordinating many more details than Terraform usage usually requires: direct network access to your servers, issuing Terraform credentials to log in, making sure that all of the necessary external software is installed, etc.
+
+The following sections describe some situations which can be solved with provisioners in principle, but where better solutions are also available. We do not recommend using provisioners for any of the use-cases described in the following sections.
+
+Even if your specific use-case is not described in the following sections, we still recommend attempting to solve it using other techniques first, and use provisioners only if there is no other option.
 
 
-## PENDENTE
+- Evitar utilizar provisioner, provisioner são o último recurso em alguns casos.
+
+
+### O que são Provisioners?
+
+Provisioners no Terraform são ferramentas poderosas que permitem executar tarefas específicas em máquinas locais ou remotas após o provisionamento da infraestrutura. Isso facilita a configuração e a preparação de servidores, bancos de dados e outros recursos para atender às necessidades do seu aplicativo.
+
+Benefícios dos Provisioners:
+
+    Automação: Simplificam o processo de configuração manual, reduzindo o tempo e o risco de erros.
+    Repetibilidade: Garantem que todos os ambientes sejam configurados de forma consistente, independentemente do local ou da equipe.
+    Gerenciamento de Configuração: Permitem a instalação de software, a criação de usuários e a aplicação de configurações específicas em cada máquina.
+
+Exemplos de Uso de Provisioners:
+
+    Instalação de pacotes de software (ex: Apache, Nginx, MySQL)
+    Configuração de firewalls e regras de segurança
+    Criação de usuários e grupos
+    Montagem de sistemas de arquivos
+    Inicialização de scripts personalizados
+
+Devo evitar os Provisioners?
+
+Embora os provisioners ofereçam diversos benefícios, existem algumas situações em que é recomendável evitá-los:
+
+    Complexidade: Provisioners complexos podem dificultar a leitura e a manutenção do código Terraform.
+    Depuração: Resolver problemas em provisioners pode ser mais desafiador do que em outras abordagens.
+    Segurança: Executar scripts em máquinas pode introduzir riscos de segurança se não forem devidamente protegidos.
+
+Alternativas aos Provisioners:
+
+    Módulos Terraform: Pacotes reutilizáveis ​​de código Terraform que encapsulam lógica de provisionamento complexa.
+    Ferramentas de Configuração como Ansible, Chef ou Puppet: Automatizam a configuração de infraestrutura e aplicativos de maneira declarativa.
+    Cloud-init: Uma ferramenta nativa para provisionamento de instâncias na nuvem, como AWS e GCP.
+
+
+
+
+## File provisioner
+
+<https://developer.hashicorp.com/terraform/language/resources/provisioners/file>
+
+
+
+
+
+
+
+
+# ############################################################################
+# ############################################################################
+# ############################################################################
+# PENDENTE
+
+- Continua em
+06:21
+
 - VER SOBRE
 Nas versões mais atuais do Terraform o null resource foi substituido pelo terraform_data Managed Resource Type
 On Terraform 1.4 and later, use the terraform_data resource type instead.
 <https://developer.hashicorp.com/terraform/language/resources/terraform-data>
 
+- Efetuar testes com
+https://developer.hashicorp.com/terraform/language/resources/terraform-data
 
+- Ver mais sobre provisioners
+https://developer.hashicorp.com/terraform/language/resources/provisioners/syntax
 
 
 
@@ -213,3 +285,5 @@ On Terraform 1.4 and later, use the terraform_data resource type instead.
 - Nas versões mais atuais do Terraform o null resource foi substituido pelo terraform_data Managed Resource Type
 On Terraform 1.4 and later, use the terraform_data resource type instead.
 <https://developer.hashicorp.com/terraform/language/resources/terraform-data>
+
+- Evitar utilizar provisioner, provisioner são o último recurso em alguns casos.
