@@ -39,4 +39,4 @@ resource "null_resource" "name" {
 }
 
 # Creation Time Provisioners - By default they are created during resource creations (terraform apply)
-# Destory Time Provisioners - Will be executed during "terraform destroy" command (when = destroy)
+# Destroy Time Provisioners - Will be executed during "terraform destroy" command (when = destroy)

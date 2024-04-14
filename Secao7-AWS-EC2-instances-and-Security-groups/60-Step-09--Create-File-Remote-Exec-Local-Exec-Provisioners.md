@@ -1174,6 +1174,188 @@ Changes to Outputs:
 
 
 
+
+
+
+
+
+
+
+
+
+- Aplicado
+
+~~~~bash
+                       = (known after apply)
+module.vpc.aws_vpc.this[0]: Creating...
+module.vpc.aws_vpc.this[0]: Still creating... [10s elapsed]
+module.vpc.aws_vpc.this[0]: Creation complete after 15s [id=vpc-03561e2607cdfe121]
+module.vpc.aws_route_table.database[0]: Creating...
+module.vpc.aws_default_security_group.this[0]: Creating...
+module.vpc.aws_internet_gateway.this[0]: Creating...
+module.vpc.aws_default_route_table.default[0]: Creating...
+module.vpc.aws_default_network_acl.this[0]: Creating...
+module.vpc.aws_subnet.public[1]: Creating...
+module.vpc.aws_route_table.private[0]: Creating...
+module.private_sg.aws_security_group.this_name_prefix[0]: Creating...
+module.vpc.aws_subnet.database[0]: Creating...
+module.vpc.aws_subnet.public[0]: Creating...
+module.vpc.aws_default_route_table.default[0]: Creation complete after 2s [id=rtb-05684c48f17f80013]
+module.vpc.aws_subnet.database[1]: Creating...
+module.vpc.aws_subnet.public[0]: Creation complete after 2s [id=subnet-0352fd7e1cc3a8cf7]
+module.vpc.aws_subnet.private[0]: Creating...
+module.vpc.aws_subnet.database[0]: Creation complete after 2s [id=subnet-07e9980e09288db89]
+module.vpc.aws_route_table.public[0]: Creating...
+module.vpc.aws_route_table.database[0]: Creation complete after 2s [id=rtb-03ad7051246c9cd28]
+module.vpc.aws_subnet.private[1]: Creating...
+module.vpc.aws_internet_gateway.this[0]: Creation complete after 2s [id=igw-0018302c4a7588af1]
+module.public_bastion_sg.aws_security_group.this_name_prefix[0]: Creating...
+module.vpc.aws_route_table.private[0]: Creation complete after 2s [id=rtb-03b77c07ed5e12094]
+module.vpc.aws_eip.nat[0]: Creating...
+module.vpc.aws_subnet.public[1]: Creation complete after 2s [id=subnet-07b1600c5deaf605e]
+module.vpc.aws_subnet.private[0]: Creation complete after 1s [id=subnet-0223a70b3592dafd8]
+module.vpc.aws_subnet.database[1]: Creation complete after 1s [id=subnet-036f78e9cd921406c]
+module.vpc.aws_route_table_association.database[0]: Creating...
+module.vpc.aws_route_table_association.database[1]: Creating...
+module.vpc.aws_db_subnet_group.database[0]: Creating...
+module.vpc.aws_subnet.private[1]: Creation complete after 1s [id=subnet-07174f0b2247a105a]
+module.vpc.aws_route_table_association.private[1]: Creating...
+module.vpc.aws_route_table.public[0]: Creation complete after 1s [id=rtb-0e7c999c487864fbd]
+module.vpc.aws_route_table_association.private[0]: Creating...
+module.vpc.aws_default_security_group.this[0]: Creation complete after 3s [id=sg-0fb22f72bddf4e3b5]
+module.vpc.aws_route_table_association.public[1]: Creating...
+module.vpc.aws_eip.nat[0]: Creation complete after 1s [id=eipalloc-0588520c5e20cb5f9]
+module.vpc.aws_route_table_association.public[0]: Creating...
+module.vpc.aws_default_network_acl.this[0]: Creation complete after 3s [id=acl-0db2786d5444ffc2b]
+module.vpc.aws_route.public_internet_gateway[0]: Creating...
+module.vpc.aws_route_table_association.database[1]: Creation complete after 0s [id=rtbassoc-0fd57a7dc01c4d8d6]
+module.vpc.aws_route_table_association.database[0]: Creation complete after 0s [id=rtbassoc-00d01bd5bed837288]
+module.vpc.aws_route_table_association.private[1]: Creation complete after 0s [id=rtbassoc-00721a67b6b4b2ef9]
+module.vpc.aws_nat_gateway.this[0]: Creating...
+module.vpc.aws_route_table_association.private[0]: Creation complete after 1s [id=rtbassoc-0285065df58d65c9b]
+module.vpc.aws_route_table_association.public[0]: Creation complete after 1s [id=rtbassoc-095c1bb647a0441fc]
+module.vpc.aws_route_table_association.public[1]: Creation complete after 1s [id=rtbassoc-078cac27f8c019676]
+module.private_sg.aws_security_group.this_name_prefix[0]: Creation complete after 4s [id=sg-009fb78426a06c229]
+module.private_sg.aws_security_group_rule.ingress_rules[0]: Creating...
+module.private_sg.aws_security_group_rule.ingress_rules[1]: Creating...
+module.private_sg.aws_security_group_rule.egress_rules[0]: Creating...
+module.vpc.aws_route.public_internet_gateway[0]: Creation complete after 1s [id=r-rtb-0e7c999c487864fbd1080289494]
+module.public_bastion_sg.aws_security_group.this_name_prefix[0]: Creation complete after 3s [id=sg-0baac500c9efda5d3]
+module.public_bastion_sg.aws_security_group_rule.ingress_rules[0]: Creating...
+module.public_bastion_sg.aws_security_group_rule.egress_rules[0]: Creating...
+module.ec2_public.aws_instance.this[0]: Creating...
+module.private_sg.aws_security_group_rule.ingress_rules[0]: Creation complete after 1s [id=sgrule-3620224966]
+module.vpc.aws_db_subnet_group.database[0]: Creation complete after 3s [id=hr-stag-myvpc]
+module.public_bastion_sg.aws_security_group_rule.egress_rules[0]: Creation complete after 1s [id=sgrule-3952743311]
+module.private_sg.aws_security_group_rule.ingress_rules[1]: Creation complete after 2s [id=sgrule-1537277688]
+module.private_sg.aws_security_group_rule.egress_rules[0]: Creation complete after 3s [id=sgrule-4274539595]
+module.public_bastion_sg.aws_security_group_rule.ingress_rules[0]: Creation complete after 2s [id=sgrule-1374401860]
+module.vpc.aws_nat_gateway.this[0]: Still creating... [10s elapsed]
+module.ec2_public.aws_instance.this[0]: Still creating... [10s elapsed]
+module.vpc.aws_nat_gateway.this[0]: Still creating... [20s elapsed]
+module.ec2_public.aws_instance.this[0]: Still creating... [20s elapsed]
+module.vpc.aws_nat_gateway.this[0]: Still creating... [30s elapsed]
+module.ec2_public.aws_instance.this[0]: Still creating... [30s elapsed]
+module.ec2_public.aws_instance.this[0]: Creation complete after 35s [id=i-0e4c7e8dd062fe661]
+module.vpc.aws_nat_gateway.this[0]: Still creating... [40s elapsed]
+module.vpc.aws_nat_gateway.this[0]: Still creating... [50s elapsed]
+module.vpc.aws_nat_gateway.this[0]: Still creating... [1m0s elapsed]
+module.vpc.aws_nat_gateway.this[0]: Still creating... [1m10s elapsed]
+module.vpc.aws_nat_gateway.this[0]: Still creating... [1m20s elapsed]
+module.vpc.aws_nat_gateway.this[0]: Still creating... [1m30s elapsed]
+module.vpc.aws_nat_gateway.this[0]: Creation complete after 1m36s [id=nat-04d466746e8cba578]
+module.vpc.aws_route.private_nat_gateway[0]: Creating...
+module.vpc.aws_route.private_nat_gateway[0]: Creation complete after 2s [id=r-rtb-03b77c07ed5e120941080289494]
+module.ec2_private["1"].data.aws_partition.current: Reading...
+module.ec2_private["0"].data.aws_partition.current: Reading...
+aws_eip.bastion_eip: Creating...
+module.ec2_private["1"].data.aws_partition.current: Read complete after 0s [id=aws]
+module.ec2_private["0"].data.aws_partition.current: Read complete after 0s [id=aws]
+module.ec2_private["0"].aws_instance.this[0]: Creating...
+module.ec2_private["1"].aws_instance.this[0]: Creating...
+aws_eip.bastion_eip: Creation complete after 2s [id=eipalloc-0ff0090c7b37ca99b]
+null_resource.name: Creating...
+null_resource.name: Provisioning with 'file'...
+module.ec2_private["1"].aws_instance.this[0]: Still creating... [10s elapsed]
+module.ec2_private["0"].aws_instance.this[0]: Still creating... [10s elapsed]
+null_resource.name: Still creating... [10s elapsed]
+module.ec2_private["1"].aws_instance.this[0]: Still creating... [20s elapsed]
+module.ec2_private["0"].aws_instance.this[0]: Still creating... [20s elapsed]
+null_resource.name: Provisioning with 'remote-exec'...
+null_resource.name (remote-exec): Connecting to remote host via SSH...
+null_resource.name (remote-exec):   Host: 18.215.37.167
+null_resource.name (remote-exec):   User: ec2-user
+null_resource.name (remote-exec):   Password: false
+null_resource.name (remote-exec):   Private key: true
+null_resource.name (remote-exec):   Certificate: false
+null_resource.name (remote-exec):   SSH Agent: true
+null_resource.name (remote-exec):   Checking Host Key: false
+null_resource.name (remote-exec):   Target Platform: unix
+null_resource.name: Still creating... [20s elapsed]
+null_resource.name (remote-exec): Connected!
+null_resource.name: Provisioning with 'local-exec'...
+null_resource.name (local-exec): Executing: ["/bin/sh" "-c" "echo VPC created on `date` and VPC ID: vpc-03561e2607cdfe121 >> creation-time-vpc-id.txt"]
+null_resource.name: Creation complete after 24s [id=4973497150046896889]
+module.ec2_private["0"].aws_instance.this[0]: Still creating... [30s elapsed]
+module.ec2_private["1"].aws_instance.this[0]: Still creating... [30s elapsed]
+module.ec2_private["0"].aws_instance.this[0]: Creation complete after 35s [id=i-068d1437316b33331]
+module.ec2_private["1"].aws_instance.this[0]: Creation complete after 36s [id=i-0cc18d61656efb1f8]
+
+Apply complete! Resources: 37 added, 0 changed, 0 destroyed.
+
+Outputs:
+
+azs = tolist([
+  "us-east-1a",
+  "us-east-1b",
+])
+ec2_bastion_public_instance_ids = "i-0e4c7e8dd062fe661"
+ec2_bastion_public_ip = ""
+ec2_private_instance_ids = [
+  "i-068d1437316b33331",
+  "i-0cc18d61656efb1f8",
+]
+ec2_private_ip = [
+  "10.0.1.47",
+  "10.0.2.168",
+]
+nat_public_ips = tolist([
+  "23.20.118.24",
+])
+private_sg_group_id = "sg-009fb78426a06c229"
+private_sg_group_name = "private-sg-20240414202915192300000003"
+private_sg_group_vpc_id = "vpc-03561e2607cdfe121"
+private_subnets = [
+  "subnet-0223a70b3592dafd8",
+  "subnet-07174f0b2247a105a",
+]
+public_bastion_sg_group_id = "sg-0baac500c9efda5d3"
+public_bastion_sg_group_name = "public-bastion-sg-20240414202916921600000005"
+public_bastion_sg_group_vpc_id = "vpc-03561e2607cdfe121"
+public_subnets = [
+  "subnet-0352fd7e1cc3a8cf7",
+  "subnet-07b1600c5deaf605e",
+]
+vpc_cidr_block = "10.0.0.0/16"
+vpc_id = "vpc-03561e2607cdfe121"
+You have new mail in /var/mail/fernando
+fernando@debian10x64:~/cursos/terraform/terraform-on-aws-with-sre-iac-devops-real-world-demos/Secao7-AWS-EC2-instances-and-Security-groups/manifestos$
+
+~~~~
+
+
+
+
+- Criou o arquivo local
+/home/fernando/cursos/terraform/terraform-on-aws-with-sre-iac-devops-real-world-demos/Secao7-AWS-EC2-instances-and-Security-groups/manifestos/local-exec-output-files/creation-time-vpc-id.txt
+
+VPC created on Sun 14 Apr 2024 05:31:22 PM -03 and VPC ID: vpc-03561e2607cdfe121
+
+
+
+
+
+
 # ############################################################################
 # ############################################################################
 # ############################################################################
