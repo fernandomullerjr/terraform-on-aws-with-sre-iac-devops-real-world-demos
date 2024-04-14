@@ -129,6 +129,7 @@ resource "null_resource" "cluster" {
 On Terraform 1.4 and later, use the terraform_data resource type instead.
 <https://developer.hashicorp.com/terraform/language/resources/terraform-data>
 
+- O Terraform 1.4 introduziu o recurso terraform_data, que oferece funcionalidades semelhantes ao null_resource com algumas vantagens, como simplicidade e melhor integração com o Terraform Cloud.
 
 
 
@@ -247,9 +248,43 @@ Alternativas aos Provisioners:
 ## File provisioner
 
 <https://developer.hashicorp.com/terraform/language/resources/provisioners/file>
+File Provisioner
 
+The file provisioner copies files or directories from the machine running Terraform to the newly created resource. The file provisioner supports both ssh and winrm type connections.
 
+Important: Use provisioners as a last resort. There are better alternatives for most situations. Refer to Declaring Provisioners for more details.
 
+Example usage
+
+~~~~tf
+resource "aws_instance" "web" {
+  # ...
+
+  # Copies the myapp.conf file to /etc/myapp.conf
+  provisioner "file" {
+    source      = "conf/myapp.conf"
+    destination = "/etc/myapp.conf"
+  }
+
+  # Copies the string in content into /tmp/file.log
+  provisioner "file" {
+    content     = "ami used: ${self.ami}"
+    destination = "/tmp/file.log"
+  }
+
+  # Copies the configs.d folder to /etc/configs.d
+  provisioner "file" {
+    source      = "conf/configs.d"
+    destination = "/etc"
+  }
+
+  # Copies all files and folders in apps/app1 to D:/IIS/webapp1
+  provisioner "file" {
+    source      = "apps/app1/"
+    destination = "D:/IIS/webapp1"
+  }
+}
+~~~~
 
 
 
@@ -277,13 +312,96 @@ https://developer.hashicorp.com/terraform/language/resources/provisioners/syntax
 
 
 
+## connection
+
+- Ao utilizar o file provisioner, é necessário configurar a conexão
+a conexão é configurada no trecho "connection", conforme o exemplo abaixo
+
+<https://developer.hashicorp.com/terraform/language/resources/provisioners/connection>
+
+Example usage
+
+~~~~tf
+# Copies the file as the root user using SSH
+provisioner "file" {
+  source      = "conf/myapp.conf"
+  destination = "/etc/myapp.conf"
+
+  connection {
+    type     = "ssh"
+    user     = "root"
+    password = "${var.root_password}"
+    host     = "${var.host}"
+  }
+}
+
+# Copies the file as the Administrator user using WinRM
+provisioner "file" {
+  source      = "conf/myapp.conf"
+  destination = "C:/App/myapp.conf"
+
+  connection {
+    type     = "winrm"
+    user     = "Administrator"
+    password = "${var.admin_password}"
+    host     = "${var.host}"
+  }
+}
+~~~~
+
+
+
+
+
+
+## Provisioners Without a Resource
+
+<https://developer.hashicorp.com/terraform/language/resources/provisioners/null_resource>
+
+If you need to run provisioners that aren't directly associated with a specific resource, you can associate them with a terraform_data.
+
+Instances of terraform_data are treated like normal resources, but they don't do anything. Like with any other resource type, you can configure provisioners and connection details on a terraform_data resource. You can also use its input argument, triggers_replace argument, and any meta-arguments to control exactly where in the dependency graph its provisioners will run.
+
+Important: Use provisioners as a last resort. There are better alternatives for most situations. Refer to Declaring Provisioners for more details.
+
+Example usage
+
+~~~~tf
+resource "aws_instance" "cluster" {
+  count = 3
+
+  # ...
+}
+
+resource "terraform_data" "cluster" {
+  # Replacement of any instance of the cluster requires re-provisioning
+  triggers_replace = aws_instance.cluster.[*].id
+
+  # Bootstrap script can run on any instance of the cluster
+  # So we just choose the first in this case
+  connection {
+    host = aws_instance.cluster.[0].public_ip
+  }
+
+  provisioner "remote-exec" {
+    # Bootstrap script called with private_ip of each node in the cluster
+    inline = [
+      "bootstrap-cluster.sh ${join(" ", aws_instance.cluster.*.private_ip)}",
+    ]
+  }
+}
+~~~~
+
+
 # ############################################################################
 # ############################################################################
 # ############################################################################
 # RESUMO
 
+- Evitar utilizar provisioner, provisioner são o último recurso em alguns casos.
+
 - Nas versões mais atuais do Terraform o null resource foi substituido pelo terraform_data Managed Resource Type
 On Terraform 1.4 and later, use the terraform_data resource type instead.
 <https://developer.hashicorp.com/terraform/language/resources/terraform-data>
 
-- Evitar utilizar provisioner, provisioner são o último recurso em alguns casos.
+- O Terraform 1.4 introduziu o recurso terraform_data, que oferece funcionalidades semelhantes ao null_resource com algumas vantagens, como simplicidade e melhor integração com o Terraform Cloud.
