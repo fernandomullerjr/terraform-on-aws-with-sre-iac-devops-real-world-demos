@@ -46,3 +46,16 @@ depends_on = [module.ec2_public, module.vpc]
 ```t
  depends_on = [module.ec2_public ]
 ```
+
+
+
+
+
+# ############################################################################
+# ############################################################################
+# ############################################################################
+# RESUMO
+
+- Usamos o `depends_on` para a EC2, dizendo que ela precisa aguardar a VPC subir.
+- Usamos o `depends_on` para o IP Elástico, dizendo que ele precisa aguardar a VPC subir(principalmente o IGW do Internet Gateway) e a EC2 subir também.
+- Usamos o `depends_on` para o Null Resource, dizendo que ele precisa aguardar a EC2 subir, para que possam ser executados os comandos e copiados os arquivos.
