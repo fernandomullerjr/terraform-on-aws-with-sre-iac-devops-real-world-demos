@@ -228,6 +228,42 @@ Connection to 10.0.2.172 closed.
 ~~~~
 
 
+
+
+## Step-13: Clean-Up
+```t
+# Terraform Destroy
+terraform destroy -auto-approve
+
+# Clean-Up
+rm -rf .terraform*
+rm -rf terraform.tfstate*
+```
+
+
+│ Warning: EC2 Default Network ACL (acl-06432e1424dd60692) not deleted, removing from state
+│
+│
+╵
+
+Destroy complete! Resources: 37 destroyed.
+
+fernando@debian10x64:~/cursos/terraform/terraform-on-aws-with-sre-iac-devops-real-world-demos/Secao7-AWS-EC2-instances-and-Security-groups/manifestos$ rm -rf .terraform*
+fernando@debian10x64:~/cursos/terraform/terraform-on-aws-with-sre-iac-devops-real-world-demos/Secao7-AWS-EC2-instances-and-Security-groups/manifestos$ rm -rf terraform.tfstate*
+fernando@debian10x64:~/cursos/terraform/terraform-on-aws-with-sre-iac-devops-real-world-demos/Secao7-AWS-EC2-instances-and-Security-groups/manifestos$
+
+
+
+
+
+# ############################################################################
+# ############################################################################
+# ############################################################################
+# PENDENTE
+
+- Ver sobre o log com o metadata, userdata, etc
+
+
 # ############################################################################
 # ############################################################################
 # ############################################################################
