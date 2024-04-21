@@ -120,8 +120,6 @@ module "complete_sg" {
 
 
 
-
-
 ## Step-08: Clean-Up
 ```t
 # Terraform Destroy
@@ -132,6 +130,8 @@ rm -rf .terraform*
 rm -rf terraform.tfstate*
 ```
 
+
+Destroy complete! Resources: 44 destroyed.
 
 
 
