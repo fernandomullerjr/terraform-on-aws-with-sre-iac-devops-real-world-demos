@@ -209,3 +209,20 @@ output "zz_ec2_private" {
   value = {for ec2_instance, ec2_instance_details in module.ec2_private: ec2_instance => ec2_instance_details}
 }
 ~~~~
+
+
+
+
+
+load_balancer_type
+The type of load balancer to create. Possible values are application, gateway, or network. The default value is application
+
+
+
+
+# ############################################################################
+# ############################################################################
+# ############################################################################
+# RESUMO
+
+- No curso definimos o "load_balancer_type" como "application", de forma explicita.
