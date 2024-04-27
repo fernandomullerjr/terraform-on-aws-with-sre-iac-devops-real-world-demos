@@ -37,7 +37,8 @@ description: Terraform Remote State Datasource Demo with two projects
 ## Step-05: Project-2: c0-terraform-remote-state-datasource.tf 
 - Create [terraform_remote_state Datasource](https://www.terraform.io/docs/language/state/remote-state-data.html) 
 - In this datasource, we will provide the Terraform State file information of our Project-1-AWS-VPC
-```t
+
+```tf
 # Terraform Remote State Datasource
 data "terraform_remote_state" "vpc" {
   backend = "s3"

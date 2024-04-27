@@ -143,7 +143,7 @@ Destroy complete! Resources: 44 destroyed.
 # ############################################################################
 #  RESUMO
 
-- Quando tem uma rule com nome "postgresql-tcp", trata-se das default rules, que tem na caixa de seleção ao criar uma rule numa SG
+- Quando tem uma rule com nome "postgresql-tcp" num módulo "security-group", trata-se das default rules, que tem na caixa de seleção ao criar uma rule numa SG
 Exemplo: SSH, SMTP, DNS, etc
 
-- Além de utilizar as rules default, é possível criar rules personalizadas, informando as portas, protocol, descrição, cidr block, etc.
+- Além de utilizar as rules default com o módulo "security-group", é possível criar rules personalizadas, informando as portas, protocol, descrição, cidr block, etc.
