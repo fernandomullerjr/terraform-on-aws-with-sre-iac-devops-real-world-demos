@@ -2,8 +2,8 @@
 # Resource - depends_on Meta-Argument
 resource "aws_eip" "bastion_eip" {
   #depends_on = [ module.ec2_public, module.vpc ]
-  depends_on = [ module.ec2_public, /*module.vpc*/ ]
-  tags = local.common_tags
+  depends_on = [module.ec2_public, /*module.vpc*/]
+  tags       = local.common_tags
 
   # COMMENTED
   #instance = module.ec2_public.id[0]
@@ -11,14 +11,14 @@ resource "aws_eip" "bastion_eip" {
 
   # UPDATED
   instance = module.ec2_public.id
-  domain = "vpc"    
+  domain   = "vpc"
 
 
-## Local Exec Provisioner:  local-exec provisioner (Destroy-Time Provisioner - Triggered during deletion of Resource)
+  ## Local Exec Provisioner:  local-exec provisioner (Destroy-Time Provisioner - Triggered during deletion of Resource)
   provisioner "local-exec" {
-    command = "echo Destroy time prov `date` >> destroy-time-prov.txt"
+    command     = "echo Destroy time prov `date` >> destroy-time-prov.txt"
     working_dir = "local-exec-output-files/"
-    when = destroy
+    when        = destroy
     #on_failure = continue
-  }  
+  }
 }

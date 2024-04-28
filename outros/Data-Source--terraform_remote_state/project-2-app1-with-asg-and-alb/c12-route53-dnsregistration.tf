@@ -1,6 +1,6 @@
 # DNS Registration 
 resource "aws_route53_record" "apps_dns" {
-  zone_id = data.aws_route53_zone.mydomain.zone_id 
+  zone_id = data.aws_route53_zone.mydomain.zone_id
   name    = "tf-multi-app-projects.devopsincloud.com"
   type    = "A"
   alias {
@@ -9,5 +9,5 @@ resource "aws_route53_record" "apps_dns" {
     name                   = module.alb.dns_name
     zone_id                = module.alb.zone_id
     evaluate_target_health = true
-  }  
+  }
 }

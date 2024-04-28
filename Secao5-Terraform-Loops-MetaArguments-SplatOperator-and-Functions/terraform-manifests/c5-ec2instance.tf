@@ -8,10 +8,10 @@ data "aws_availability_zones" "my_azones" {
 
 # EC2 Instance
 resource "aws_instance" "myec2vm" {
-  ami                    = data.aws_ami.amzlinux2.id
+  ami = data.aws_ami.amzlinux2.id
   #instance_type          = var.instance_type
 
-  
+
   # How to reference List values ?
   #instance_type = var.instance_type_list[1]
 
@@ -26,16 +26,16 @@ resource "aws_instance" "myec2vm" {
   #count = 2
 
   # count.index
-#    tags = {
-#      "Name" = "EC2-Count-Demo-${count.index}"
-#    }
+  #    tags = {
+  #      "Name" = "EC2-Count-Demo-${count.index}"
+  #    }
 
   # tags = {
   #   "Name" = "EC2 Demo 2"
   # }
 
   # Create EC2 Instance in all Availabilty Zones of a VPC  
-  for_each = toset(data.aws_availability_zones.my_azones.names)
+  for_each          = toset(data.aws_availability_zones.my_azones.names)
   availability_zone = each.key # You can also use each.value because for list items each.key == each.value
   tags = {
     "Name" = "For-Each-Demo-${each.key}"

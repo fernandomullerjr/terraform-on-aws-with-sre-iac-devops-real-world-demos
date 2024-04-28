@@ -7,24 +7,24 @@ terraform {
       version = ">= 5.0"
     }
     null = {
-      source = "hashicorp/null"
+      source  = "hashicorp/null"
       version = "~> 3.0"
-    }    
+    }
     random = {
-      source = "hashicorp/random"
+      source  = "hashicorp/random"
       version = "~> 3.0"
-    }            
+    }
   }
   # Adding Backend as S3 for Remote State Storage
   backend "s3" {
     bucket = "terraform-on-aws-for-ec2"
     key    = "dev/project2-app1/terraform.tfstate"
-    region = "us-east-1" 
+    region = "us-east-1"
 
     # Enable during Step-09     
     # For State Locking
-    dynamodb_table = "dev-project2-app1"    
-  }     
+    dynamodb_table = "dev-project2-app1"
+  }
 }
 
 # Provider Block

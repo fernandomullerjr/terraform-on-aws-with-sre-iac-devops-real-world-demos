@@ -23,6 +23,9 @@ Listeners
 Target Group 
 Attachments
 
+- Utilizar o complete example como guia:
+<https://github.com/terraform-aws-modules/terraform-aws-alb/tree/master/examples/complete-alb>
+
 - Manifesto coletado do zip:
 
 ~~~~tf
@@ -106,6 +109,12 @@ output "zz_ec2_private" {
 
 
 
+- Utilizar o complete example como guia:
+<https://github.com/terraform-aws-modules/terraform-aws-alb/tree/master/examples/complete-alb>
+
+
+
+
 
 
 # ############################################################################
@@ -117,3 +126,6 @@ output "zz_ec2_private" {
 Listeners
 Target Group 
 Attachments
+
+- Utilizar o complete example como guia:
+<https://github.com/terraform-aws-modules/terraform-aws-alb/tree/master/examples/complete-alb>
