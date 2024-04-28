@@ -6,12 +6,14 @@ resource "aws_instance" "cluster" {
 
 resource "terraform_data" "cluster" {
   # Replacement of any instance of the cluster requires re-provisioning
-  triggers_replace = aws_instance.cluster.[*].id
+  #triggers_replace = aws_instance.cluster.[*].id
+  triggers_replace = aws_instance.cluster.id
 
   # Bootstrap script can run on any instance of the cluster
   # So we just choose the first in this case
   connection {
-    host = aws_instance.cluster.[0].public_ip
+    #host = aws_instance.cluster.[0].public_ip
+    host = aws_instance.cluster.public_ip
   }
 
   provisioner "remote-exec" {
