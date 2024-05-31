@@ -129,3 +129,6 @@ Attachments
 
 - Utilizar o complete example como guia:
 <https://github.com/terraform-aws-modules/terraform-aws-alb/tree/master/examples/complete-alb>
+
+## Importante
+- Como são criadas mais de 1 EC2, são criadas 2 instancias EC2, então é necessário usar o for_each no resource "aws_lb_target_group_attachment", para passar cada uma das EC2 no campo **target_id**.
