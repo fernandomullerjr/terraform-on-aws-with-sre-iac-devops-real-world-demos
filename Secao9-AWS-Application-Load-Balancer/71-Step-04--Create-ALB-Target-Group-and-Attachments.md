@@ -132,3 +132,15 @@ Attachments
 
 ## Importante
 - Como são criadas mais de 1 EC2, são criadas 2 instancias EC2, então é necessário usar o for_each no resource "aws_lb_target_group_attachment", para passar cada uma das EC2 no campo **target_id**.
+
+- No for_each temos um map, composto por:
+~~~~bash
+## k = ec2_instance
+## v = ec2_instance_details
+~~~~
+
+- Então para acessar o "instance id", é necessário acessar o "v" do map, que é o value:
+each.value.id
+
+- O Output ao final do arquivo "c10-02-ALB-application-loadbalancer.tf" traz o for num formato mais legível/simples.
+value = {for ec2_instance, ec2_instance_details in module.ec2_private: ec2_instance => ec2_instance_details}
