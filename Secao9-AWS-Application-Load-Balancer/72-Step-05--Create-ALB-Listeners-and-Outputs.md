@@ -201,3 +201,81 @@ Thu 04 Jul 2024 11:55:12 PM -03
 fernando@debian10x64:~/cursos/terraform/terraform-on-aws-with-sre-iac-devops-real-world-demos/Secao9-AWS-Application-Load-Balancer/manifestos$
 
 ~~~~
+
+
+
+- Criada a pasta e a chave SSH
+
+agora o plan rolou
+
+~~~~bash
+fernando@debian10x64:~/cursos/terraform/terraform-on-aws-with-sre-iac-devops-real-world-demos/Secao9-AWS-Application-Load-Balancer/manifestos$ ls
+app1-install.sh                                   c1-versions.tf           c4-02-vpc-module.tf               c5-04-securitygroup-privatesg.tf       c7-02-ec2instance-outputs.tf  c9-nullresource-provisioners.tf
+c10-01-ALB-application-loadbalancer-variables.tf  c2-generic-variables.tf  c4-03-vpc-outputs.tf              c5-05-securitygroup-loadbalancersg.tf  c7-03-ec2instance-bastion.tf  local-exec-output-files
+c10-02-ALB-application-loadbalancer.tf            c3-local-values.tf       c5-02-securitygroup-outputs.tf    c6-01-datasource-ami.tf                c7-04-ec2instance-private.tf
+c10-03-ALB-application-loadbalancer-outputs.tf    c4-01-vpc-variables.tf   c5-03-securitygroup-bastionsg.tf  c7-01-ec2instance-variables.tf         c8-elasticip.tf
+fernando@debian10x64:~/cursos/terraform/terraform-on-aws-with-sre-iac-devops-real-world-demos/Secao9-AWS-Application-Load-Balancer/manifestos$ ls
+app1-install.sh                                   c1-versions.tf           c4-02-vpc-module.tf               c5-04-securitygroup-privatesg.tf       c7-02-ec2instance-outputs.tf  c9-nullresource-provisioners.tf
+c10-01-ALB-application-loadbalancer-variables.tf  c2-generic-variables.tf  c4-03-vpc-outputs.tf              c5-05-securitygroup-loadbalancersg.tf  c7-03-ec2instance-bastion.tf  local-exec-output-files
+c10-02-ALB-application-loadbalancer.tf            c3-local-values.tf       c5-02-securitygroup-outputs.tf    c6-01-datasource-ami.tf                c7-04-ec2instance-private.tf  private-key
+c10-03-ALB-application-loadbalancer-outputs.tf    c4-01-vpc-variables.tf   c5-03-securitygroup-bastionsg.tf  c7-01-ec2instance-variables.tf         c8-elasticip.tf
+fernando@debian10x64:~/cursos/terraform/terraform-on-aws-with-sre-iac-devops-real-world-demos/Secao9-AWS-Application-Load-Balancer/manifestos$ terraform plan
+module.alb.data.aws_partition.current: Reading...
+module.ec2_public.data.aws_partition.current: Reading...
+data.aws_ami.amzlinux2: Reading...
+module.alb.data.aws_partition.current: Read complete after 0s [id=aws]
+module.ec2_public.data.aws_partition.current: Read complete after 0s [id=aws]
+data.aws_ami.amzlinux2: Read complete after 1s [id=ami-0241b1d769b029352]
+
+Terraform used the selected providers to generate the following execution plan. Resource actions are indicated with the following symbols:
+  + create
+ <= read (data resources)
+
+Terraform will perform the following actions:
+
+  # aws_eip.bastion_eip will be created
+  + resource "aws_eip" "bastion_eip" {
+      + allocation_id        = (known after apply)
+      + association_id       = (known after apply)
+      + carrier_ip           = (known after apply)
+      + customer_owned_ip    = (known after apply)
+      + domain               = "vpc"
+      + id                   = (known after apply)
+      + instance             = (known after apply)
+      + network_border_group = (known after apply)
+      + network_interface    = (known after apply)
+      + private_dns          = (known after apply)
+      + private_ip           = (known after apply)
+      + ptr_record           = (known after apply)
+      + public_dns           = (known after apply)
+      + public_ip            = (known after apply)
+      + public_ipv4_pool     = (known after apply)
+      + tags                 = {
+          + "environment" = "dev"
+          + "owners"      = "SAP"
+        }
+      + tags_all             = {
+          + "environment" = "dev"
+          + "owners"      = "SAP"
+        }
+      + vpc                  = (known after apply)
+    }
+
+  # aws_lb_target_group_attachment.mytg1["0"] will be created
+  + resource "aws_lb_target_group_attachment" "mytg1" {
+      + id               = (known after apply)
+      + port             = 80
+      + target_group_arn = (known after apply)
+      + target_id        = (known after apply)
+    }
+
+  # aws_lb_target_group_attachment.mytg1["1"] will be created
+  + resource "aws_lb_target_group_attachment" "mytg1" {
+      + id               = (known after apply)
+      + port             = 80
+      + target_group_arn = (known after apply)
+      + target_id        = (known after apply)
+    }
+
+
+~~~~
