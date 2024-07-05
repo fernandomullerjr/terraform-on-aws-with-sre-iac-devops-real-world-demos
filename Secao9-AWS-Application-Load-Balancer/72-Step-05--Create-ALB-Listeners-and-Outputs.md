@@ -177,3 +177,27 @@ output "target_groups" {
 
 
 
+## Dia 04/07/2024
+
+Efetuando plan
+
+~~~~bash
+devops-real-world-demos/Secao9-AWS-Application-Load-Balancer/manifestos$ terraform plan
+╷
+│ Error: Invalid function argument
+│
+│   on c9-nullresource-provisioners.tf line 10, in resource "null_resource" "name":
+│   10:     private_key = file("private-key/terraform-key.pem")
+│     ├────────────────
+│     │ while calling file(path)
+│
+│ Invalid value for "path" parameter: no file exists at "private-key/terraform-key.pem"; this function works only with files that are distributed as part of the configuration source code, so if this file will be created by a resource in this configuration you must
+│ instead obtain this result from an attribute of that resource.
+╵
+You have new mail in /var/mail/fernando
+fernando@debian10x64:~/cursos/terraform/terraform-on-aws-with-sre-iac-devops-real-world-demos/Secao9-AWS-Application-Load-Balancer/manifestos$
+fernando@debian10x64:~/cursos/terraform/terraform-on-aws-with-sre-iac-devops-real-world-demos/Secao9-AWS-Application-Load-Balancer/manifestos$ date
+Thu 04 Jul 2024 11:55:12 PM -03
+fernando@debian10x64:~/cursos/terraform/terraform-on-aws-with-sre-iac-devops-real-world-demos/Secao9-AWS-Application-Load-Balancer/manifestos$
+
+~~~~

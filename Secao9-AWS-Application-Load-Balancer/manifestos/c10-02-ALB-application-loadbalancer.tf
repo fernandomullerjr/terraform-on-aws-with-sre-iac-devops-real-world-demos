@@ -74,6 +74,3 @@ output "zz_ec2_private" {
   #value = {for k, v in module.ec2_private: k => v}
   value = { for ec2_instance, ec2_instance_details in module.ec2_private : ec2_instance => ec2_instance_details }
 }
-
-
-
