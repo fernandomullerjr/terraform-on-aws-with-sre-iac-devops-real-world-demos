@@ -37,3 +37,60 @@ Registro de devopsmind.shop finalizado
 Confirme as informações do domínio
 
 Essas informações serão usadas para registrar o domínio. Informações incorretas podem causar a suspensão do domínio.
+
+
+
+Visão Geral do Domínio
+- Domínios - devopsmind.shop
+devopsmind.shop
+Ativo
+
+fernandomj90@gmail.com
+Expira em: 2025-07-07
+
+
+
+- Route53
+devopsmind.shop was successfully created.
+Now you can create records in the hosted zone to specify how you want Route 53 to route traffic for your domain.
+
+
+Servidores de DNS alterados!
+
+Seus servidores de DNS foram alterados para:
+
+ns-1686.awsdns-18.co.uk
+
+ns-1434.awsdns-51.org
+
+ns-548.awsdns-04.net
+
+ns-259.awsdns-32.com
+Pode levar até 24 horas para o domínio se propagar com os novos servidores de DNS.
+
+
+
+- Criando CNAME apontando para o .com.br
+Record for devopsmind.shop was successfully created.
+Route 53 propagates your changes to all of the Route 53 authoritative DNS servers within 60 seconds. Use "View status" button to check propagation status.
+
+Route 53
+Hosted zones
+devopsmind.shop
+
+    Change Info
+
+C05966081IHWMB4IIJ4VV  Info
+Change info details
+ID
+/change/C05966081IHWMB4IIJ4VV
+Status
+PENDING
+Submitted at
+July 06, 2024, 23:46 (UTC:-03:00)
+Comment
+
+
+23:47h
+Status
+INSYNC
