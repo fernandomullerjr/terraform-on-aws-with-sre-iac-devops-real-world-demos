@@ -114,3 +114,17 @@ terraform destroy -auto-approve
 rm -rf .terraform*
 rm -rf terraform.tfstate*
 ```
+
+
+module.vpc.aws_eip.nat[0]: Destruction complete after 2s
+module.vpc.aws_internet_gateway.this[0]: Destroying... [id=igw-0ceff9201bfe7c202]
+module.vpc.aws_internet_gateway.this[0]: Destruction complete after 1s
+module.vpc.aws_vpc.this[0]: Destroying... [id=vpc-0fc8d5a77f638546c]
+module.vpc.aws_vpc.this[0]: Destruction complete after 1s
+╷
+│ Warning: EC2 Default Network ACL (acl-052cfa7b484335009) not deleted, removing from state
+│
+│
+╵
+
+Destroy complete! Resources: 47 destroyed.

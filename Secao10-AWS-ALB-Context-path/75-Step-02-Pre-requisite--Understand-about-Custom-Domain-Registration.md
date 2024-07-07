@@ -104,5 +104,5 @@ INSYNC
 # PENDENTE
 
 - Dominio devopsmind.shop ainda não propagou(23:51h - 06/07/2024)
-verificar propagação
+verificar propagação, <https://www.whatsmydns.net/#NS/devopsmind.shop>
 testar os CNAME's
