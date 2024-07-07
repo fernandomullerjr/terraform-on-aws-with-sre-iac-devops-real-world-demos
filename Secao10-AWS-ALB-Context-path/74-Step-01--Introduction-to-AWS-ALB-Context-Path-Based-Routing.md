@@ -70,3 +70,11 @@ git status
 ## PENDENTE
 - Configurar o dominio que eu comprei
 devopsmind.shop
+
+<https://us-east-1.console.aws.amazon.com/route53/v2/home?region=us-east-1#Dashboard>
+
+Registro de devopsmind.shop finalizado
+
+Confirme as informações do domínio
+
+Essas informações serão usadas para registrar o domínio. Informações incorretas podem causar a suspensão do domínio.
