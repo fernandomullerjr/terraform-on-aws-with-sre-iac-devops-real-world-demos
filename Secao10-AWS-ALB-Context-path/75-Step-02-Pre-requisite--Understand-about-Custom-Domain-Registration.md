@@ -122,3 +122,13 @@ A certificate request with a status of pending validation has been created. Furt
 - DNS
 Record for devopsmind.shop was successfully created.
 Route 53 propagates your changes to all of the Route 53 authoritative DNS servers within 60 seconds. Use "View status" button to check propagation status.
+
+C04489253MYOYXMLQRQ8F  Info
+Change info details
+ID
+/change/C04489253MYOYXMLQRQ8F
+Status
+INSYNC
+Submitted at
+July 14, 2024, 21:39 (UTC:-03:00)
+Comment
