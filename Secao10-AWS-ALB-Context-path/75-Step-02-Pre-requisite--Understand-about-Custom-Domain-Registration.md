@@ -112,7 +112,8 @@ testar os CNAME's
 ## Dia 14/07/2024
 
 Dominio devopsmind.shop
-verificando
+verificando tava propagado, mas NS obsoletos
+criado Hosted zone que nao existia mais, atualizados NS no Hostinger
 
 
 - ACM
@@ -132,3 +133,16 @@ INSYNC
 Submitted at
 July 14, 2024, 21:39 (UTC:-03:00)
 Comment
+
+
+
+
+## PENDENTE
+- Propagação dos NS
+criado Hosted zone que nao existia mais, atualizados NS no Hostinger no dia 14/07/204 as 21:45h
+
+- Configurar ACM.
+ver video <https://www.youtube.com/watch?v=yB3zUwfrsWo> umas idéias e www, etc
+s3
+
+
