@@ -106,3 +106,19 @@ INSYNC
 - Dominio devopsmind.shop ainda não propagou(23:51h - 06/07/2024)
 verificar propagação, <https://www.whatsmydns.net/#NS/devopsmind.shop>
 testar os CNAME's
+
+
+
+## Dia 14/07/2024
+
+Dominio devopsmind.shop
+verificando
+
+
+- ACM
+Successfully requested certificate with ID 5046aed4-5d75-4800-96cb-e064138bcf41
+A certificate request with a status of pending validation has been created. Further action is needed to complete the validation and approval of the certificate.
+
+- DNS
+Record for devopsmind.shop was successfully created.
+Route 53 propagates your changes to all of the Route 53 authoritative DNS servers within 60 seconds. Use "View status" button to check propagation status.
