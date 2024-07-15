@@ -54,16 +54,6 @@ output "mydomain_zoneid" {
 
 
 
-## PENDENTE
-- Propagação dos NS
-criado Hosted zone que nao existia mais, atualizados NS no Hostinger no dia 14/07/204 as 21:45h
-<https://dnschecker.org/#NS/devopsmind.shop>
-<https://www.whatsmydns.net/#NS/devopsmind.shop>
-
-- Configurar ACM.
-ver video <https://www.youtube.com/watch?v=yB3zUwfrsWo> umas idéias e www, etc
-s3
-
 
 
 
@@ -87,5 +77,24 @@ s3
 
 
 
-- Criados os arquivos
+- Criados os arquivos tf
 ajustados para devopsmind.shop
+
+- Ajustando
+/home/fernando/cursos/terraform/terraform-on-aws-with-sre-iac-devops-real-world-demos/Secao10-AWS-ALB-Context-path/manifestos/c5-05-securitygroup-loadbalancersg.tf
+ingress_rules = ["http-80-tcp", "https-443-tcp"]
+
+
+
+# ############################################################################
+# ############################################################################
+# ############################################################################
+#  PENDENTE
+- Propagação dos NS
+criado Hosted zone que nao existia mais, atualizados NS no Hostinger no dia 14/07/204 as 21:45h
+<https://dnschecker.org/#NS/devopsmind.shop>
+<https://www.whatsmydns.net/#NS/devopsmind.shop>
+
+- Configurar ACM.
+ver video <https://www.youtube.com/watch?v=yB3zUwfrsWo> umas idéias e www, etc
+s3
