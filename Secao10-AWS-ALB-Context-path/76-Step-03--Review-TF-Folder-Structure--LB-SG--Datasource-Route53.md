@@ -86,11 +86,14 @@ ingress_rules = ["http-80-tcp", "https-443-tcp"]
 
 
 
+
+
 # ############################################################################
 # ############################################################################
 # ############################################################################
 #  PENDENTE
-- Propagação dos NS
+
+- Propagação dos NS para o dominio devopsmind.shop da Hostinger propagar com o NS da AWS
 criado Hosted zone que nao existia mais, atualizados NS no Hostinger no dia 14/07/204 as 21:45h
 <https://dnschecker.org/#NS/devopsmind.shop>
 <https://www.whatsmydns.net/#NS/devopsmind.shop>
