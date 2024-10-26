@@ -221,3 +221,18 @@ criado Hosted zone que nao existia mais, atualizados NS no Hostinger no dia 14/0
 - Configurar ACM.
 ver video <https://www.youtube.com/watch?v=yB3zUwfrsWo> umas idéias e www, etc
 s3
+
+
+
+
+
+# ############################################################################
+# ############################################################################
+# ############################################################################
+# dia 26/10/2024
+
+hoje dia 26/10/2024
+
+propagação OK em todos lugares
+
+menos na China
