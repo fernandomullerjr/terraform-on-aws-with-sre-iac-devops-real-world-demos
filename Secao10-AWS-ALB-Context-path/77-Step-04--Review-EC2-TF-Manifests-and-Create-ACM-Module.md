@@ -313,3 +313,85 @@ de:
 c7-04-ec2instance-private.tf
 para:
 c7-04-ec2instance-private-app1.tf
+
+
+
+
+
+
+## Step-06: c7-05-ec2instance-private-app2.tf
+- Create new EC2 Instances for App2 Application
+- **Module Name:** ec2_private_app2
+- **Name:** `"${var.environment}-app2"`
+- **User Data:** `user_data = file("${path.module}/app2-install.sh")`
+```t
+# AWS EC2 Instance Terraform Module
+# EC2 Instances that will be created in VPC Private Subnets for App2
+module "ec2_private_app2" {
+  depends_on = [ module.vpc ] # VERY VERY IMPORTANT else userdata webserver provisioning will fail
+  source  = "terraform-aws-modules/ec2-instance/aws"
+  #version = "2.17.0"
+  version = "5.5.0"    
+  # insert the 10 required variables here
+  name                   = "${var.environment}-app2"
+  ami                    = data.aws_ami.amzlinux2.id
+  instance_type          = var.instance_type
+  key_name               = var.instance_keypair
+  user_data = file("${path.module}/app2-install.sh")
+  tags = local.common_tags
+
+# Changes as part of Module version from 2.17.0 to 5.5.0
+  for_each = toset(["0", "1"])
+  subnet_id =  element(module.vpc.private_subnets, tonumber(each.key))
+  vpc_security_group_ids = [module.private_sg.security_group_id]
+}
+```
+
+## Step-07: c7-02-ec2instance-outputs.tf
+- Update App1 and App2 Outputs based on new module names
+```t
+
+# Private EC2 Instances - App1
+## ec2_private_instance_ids
+output "ec2_private_instance_ids_app1" {
+  description = "List of IDs of instances"
+  value = [for ec2private in module.ec2_private_app1: ec2private.id ]   
+}
+
+## ec2_private_ip
+output "ec2_private_ip_app1" {
+  description = "List of private IP addresses assigned to the instances"
+  value = [for ec2private in module.ec2_private_app1: ec2private.private_ip ]  
+}
+
+
+# Private EC2 Instances - App2
+## ec2_private_instance_ids
+output "ec2_private_instance_ids_app2" {
+  description = "List of IDs of instances"
+  value = [for ec2private in module.ec2_private_app2: ec2private.id ]   
+}
+
+## ec2_private_ip
+output "ec2_private_ip_app2" {
+  description = "List of private IP addresses assigned to the instances"
+  value = [for ec2private in module.ec2_private_app2: ec2private.private_ip ]  
+}
+```
+
+
+
+
+
+
+- Ajustando arquivo de Outputs
+/home/fernando/cursos/terraform/terraform-on-aws-with-sre-iac-devops-real-world-demos/Secao10-AWS-ALB-Context-path/manifestos/c7-02-ec2instance-outputs.tf
+
+
+
+
+git status
+git add .
+git commit -m "77. Step-04: Review EC2 TF Manifests and Create ACM Module. Ajustando arquivo de Outputs"
+git push
+git status
