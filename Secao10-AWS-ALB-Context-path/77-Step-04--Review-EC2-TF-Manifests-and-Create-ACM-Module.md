@@ -395,3 +395,188 @@ git add .
 git commit -m "77. Step-04: Review EC2 TF Manifests and Create ACM Module. Ajustando arquivo de Outputs"
 git push
 git status
+
+
+
+
+
+### ACM
+
+<https://registry.terraform.io/modules/terraform-aws-modules/acm/aws/latest>
+
+
+## Step-08: c11-acm-certificatemanager.tf
+- [Terraform AWS ACM Module](https://registry.terraform.io/modules/terraform-aws-modules/acm/aws/latest)
+- Create a SAN SSL Certificate using DNS Validation with Route53
+- This is required for us with ALB Load Balancer HTTPS Listener to associate SSL certificate to it
+- Test trimsuffic function using `terraform console`
+```t
+# Terraform Console
+terraform console
+
+# Provide Trim Suffix Function
+trimsuffix("devopsincloud.com.", ".")
+
+# Verify Output
+"devopsincloud.com"
+```
+- **ACM Module Terraform Configuration**
+```t
+# ACM Module - To create and Verify SSL Certificates
+module "acm" {
+  source  = "terraform-aws-modules/acm/aws"
+  #version = "2.14.0"
+  version = "5.0.0"
+
+  domain_name  = trimsuffix(data.aws_route53_zone.mydomain.name, ".")
+  zone_id      = data.aws_route53_zone.mydomain.zone_id 
+
+  subject_alternative_names = [
+    "*.devopsincloud.com"
+  ]
+  tags = local.common_tags
+
+  # Validation Method
+  validation_method = "DNS"
+  wait_for_validation = true  
+}
+
+# Output ACM Certificate ARN
+output "acm_certificate_arn" {
+  description = "The ARN of the certificate"
+  value       = module.acm.acm_certificate_arn
+}
+```
+
+
+
+
+
+### trimsuffix
+<https://developer.hashicorp.com/terraform/language/functions/trimsuffix>
+
+#### trimsuffix Function
+trimsuffix removes the specified suffix from the end of the given string.
+
+#### Examples
+> trimsuffix("helloworld", "world")
+hello
+
+
+
+
+
+
+
+fernandomullerjr: COMO VAI TRABALHAR O trimsuffix no meu codigo?
+
+GitHub Copilot: A função [`trimsuffix`]  no seu código Terraform é usada para remover um sufixo específico de uma string. No seu caso, ela está sendo usada para remover o ponto final (`"."`) do nome do domínio retornado pelo `data.aws_route53_zone.mydomain.name`.
+
+### Passo a Passo
+
+1. **Entrada**:
+   - `data.aws_route53_zone.mydomain.name`: Este é o nome do domínio obtido do recurso [`aws_route53_zone`] . Suponha que o valor seja `"example.com."`.
+
+2. **Função [`trimsuffix`] **:
+   - `trimsuffix(data.aws_route53_zone.mydomain.name, ".")`: Remove o sufixo `"."` da string `"example.com."`.
+
+3. **Resultado**:
+   - A string resultante será `"example.com"`.
+
+### Aplicação no Código
+
+No seu código, a função [`trimsuffix`]  está sendo usada para definir o valor do argumento [`domain_name`]  do módulo [`acm`] :
+
+```tf
+module "acm" {
+  source  = "terraform-aws-modules/acm/aws"
+  version = "5.0.0"
+
+  domain_name  = trimsuffix(data.aws_route53_zone.mydomain.name, ".")
+  zone_id      = data.aws_route53_zone.mydomain.zone_id 
+
+  subject_alternative_names = [
+    "*.devopsmind.shop",
+  ]
+  tags = local.common_tags
+
+  validation_method = "DNS"
+  wait_for_validation = true  
+}
+```
+
+### Explicação
+
+- **Antes do [`trimsuffix`] **:
+  - `data.aws_route53_zone.mydomain.name` pode retornar algo como `"example.com."`.
+
+- **Depois do [`trimsuffix`] **:
+  - `trimsuffix(data.aws_route53_zone.mydomain.name, ".")` transforma `"example.com."` em `"example.com"`.
+
+### Benefício
+
+- **Consistência**: Remove o ponto final que é comum em nomes de domínio completos (FQDN), garantindo que o valor de [`domain_name`]  seja consistente e sem o ponto final indesejado.
+
+### Código Completo
+
+```tf
+module "acm" {
+  source  = "terraform-aws-modules/acm/aws"
+  version = "5.0.0"
+
+  domain_name  = trimsuffix(data.aws_route53_zone.mydomain.name, ".")
+  zone_id      = data.aws_route53_zone.mydomain.zone_id 
+
+  subject_alternative_names = [
+    "*.devopsmind.shop",
+  ]
+  tags = local.common_tags
+
+  validation_method = "DNS"
+  wait_for_validation = true  
+}
+```
+
+Neste exemplo, [`domain_name`] será `"example.com"` em vez de `"example.com."`, o que pode ser necessário para a correta configuração do módulo ACM.
+
+
+
+
+
+
+- Testando na console
+
+```t
+# Terraform Console
+terraform console
+
+# Provide Trim Suffix Function
+trimsuffix("devopsincloud.com.", ".")
+
+# Verify Output
+"devopsincloud.com"
+```
+
+
+> terraform console
+> trimsuffix("devopsincloud.com.", ".")
+"devopsincloud.com"
+>
+
+
+
+
+# ############################################################################
+# ############################################################################
+# ############################################################################
+# RESUMO
+
+- Como é usado for_each no módulo da EC2
+  for_each               = toset(["0", "1"])
+
+- É necessário utilizar laço for no output:
+  value = [for ec2private in module.ec2_private_app1: ec2private.id ]   
+
+
+- A função [`trimsuffix`] é usada para remover um sufixo específico de uma string. No caso deste projeto:
+Remove o ponto final que é comum em nomes de domínio completos (FQDN), garantindo que o valor de [`domain_name`]  seja consistente e sem o ponto final indesejado.
