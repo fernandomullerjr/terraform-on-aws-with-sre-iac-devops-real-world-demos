@@ -563,3 +563,66 @@ https://dnschecker.org/#NS/devopsmind.shop
 
 - Checar se o metadata do app2 fica ok, devido ajuste no Shell Script dele:
 http://apps.devopsmind.shop/app2/metadata.html
+
+
+
+
+
+# ############################################################################
+# ############################################################################
+# ############################################################################
+# Dia 27/10/2024
+
+- Subindo o ambiente da aula:
+cd /home/fernando/cursos/terraform/terraform-on-aws-with-sre-iac-devops-real-world-demos/Secao10-AWS-ALB-Context-path/manifestos
+terraform apply 
+
+
+- Checando se o metadata do app2 fica ok, devido ajuste no Shell Script dele:
+http://apps.devopsmind.shop/app2/metadata.html
+
+
+>
+>
+>
+>
+> wget http://apps.devopsmind.shop/app2/metadata.html
+--2024-10-27 14:29:50--  http://apps.devopsmind.shop/app2/metadata.html
+Resolving apps.devopsmind.shop (apps.devopsmind.shop)... 52.87.100.100, 34.200.201.242
+Connecting to apps.devopsmind.shop (apps.devopsmind.shop)|52.87.100.100|:80... connected.
+HTTP request sent, awaiting response... 301 Moved Permanently
+Location: https://apps.devopsmind.shop:443/app2/metadata.html [following]
+--2024-10-27 14:29:50--  https://apps.devopsmind.shop/app2/metadata.html
+Connecting to apps.devopsmind.shop (apps.devopsmind.shop)|52.87.100.100|:443... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 474 [text/html]
+Saving to: ‘metadata.html’
+
+metadata.html                                                  100%[====================================================================================================================================================>]     474  --.-KB/s    in 0s
+
+2024-10-27 14:29:51 (365 MB/s) - ‘metadata.html’ saved [474/474]
+
+
+
+- Arquivo:
+Secao10-AWS-ALB-Context-path/manifestos/metadata.html
+
+~~~~json
+{
+  "accountId" : "058264180843",
+  "architecture" : "x86_64",
+  "availabilityZone" : "us-east-1b",
+  "billingProducts" : null,
+  "devpayProductCodes" : null,
+  "marketplaceProductCodes" : null,
+  "imageId" : "ami-01e3c4a339a264cc9",
+  "instanceId" : "i-037d63b255a47dfe7",
+  "instanceType" : "t2.micro",
+  "kernelId" : null,
+  "pendingTime" : "2024-10-27T16:43:49Z",
+  "privateIp" : "10.0.2.224",
+  "ramdiskId" : null,
+  "region" : "us-east-1",
+  "version" : "2017-09-30"
+}
+~~~~
