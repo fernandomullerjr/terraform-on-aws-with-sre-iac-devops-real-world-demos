@@ -531,6 +531,23 @@ module.ec2_private_app2["0"].aws_instance.this[0]: Still modifying... [id=i-061a
 module.ec2_private_app2["1"].aws_instance.this[0]: Still modifying... [id=i-07d777a2350d59a6c, 27s elapsed]
 
 
+erro ainda:
+http://apps.devopsmind.shop/app2/metadata.html
+
+Not Found
+The requested URL was not found on this server.
+
+
+
+- Destroy
+
+module.vpc.aws_internet_gateway.this[0]: Destroying... [id=igw-0cfd3dc99ba245424]
+module.vpc.aws_internet_gateway.this[0]: Destruction complete after 1s
+module.vpc.aws_vpc.this[0]: Destroying... [id=vpc-00be1d8ce78a2a693]
+module.vpc.aws_vpc.this[0]: Destruction complete after 1s
+
+Destroy complete! Resources: 60 destroyed.
+
 
 
 # ############################################################################
